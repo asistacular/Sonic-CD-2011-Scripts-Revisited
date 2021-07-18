@@ -47,6 +47,7 @@ That said, you are free to utilize any script modifications (bugfixes, enhanceme
   * Fix incorrect active palette displaying during pause and rapid palette switching after resuming from a paused state (in conjunction with engine additions from the related engine project)
 ### Possible
 + Restore original palette cycle and background planet shape in SS2
++ Slow down movement speed of various speedy (possibly bugged) UFO paths in SS2 and SS3
 + Retain shields, speed shoes and invincibility when warping through time
 + Instant time warping option
 + Option to switch between SegaCD/MegaCD and Genesis/MD sound effects
