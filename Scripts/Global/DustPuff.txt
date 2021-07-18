@@ -6,7 +6,7 @@
 #alias 24: TYPE_DUSTPUFF
 
 
-sub ObjectDraw
+sub ObjectMain
 	if Object.Frame>3
 		Stage.ActivePlayer=Object.PropertyValue
 		Object.Direction=Player.Direction
@@ -16,13 +16,12 @@ sub ObjectDraw
 		Stage.ActivePlayer=0
 		if Player.Animation!=ANI_SPINDASH
 			Object.Type=TypeName[BlankObject]
-		else
-			DrawSpriteFX(Object.Frame,FX_FLIP,Object.XPos,Object.YPos)
 		endif
-	else
-		DrawSpriteFX(Object.Frame,FX_FLIP,Object.XPos,Object.YPos)
 	endif
 	switch Object.Frame
+	case -1
+		Object.Frame++
+		break
 	case 0
 	case 1
 	case 2
@@ -57,12 +56,23 @@ sub ObjectDraw
 			Object.AnimationTimer=0
 		endif
 		break
-
 	endswitch
 endsub
 
 
+sub ObjectDraw
+	if Object.Frame>3
+		if Player.Animation==ANI_SPINDASH
+			DrawSpriteFX(Object.Frame,FX_FLIP,Object.XPos,Object.YPos)
+		endif
+	else
+		DrawSpriteFX(Object.Frame,FX_FLIP,Object.XPos,Object.YPos)
+	endif
+endsub
+
+
 sub ObjectStartup
+	Object.Frame=-1
 	LoadSpriteSheet("Global/Items3.gif")
 	SpriteFrame(-7,-11,13,14,148,129)
 	SpriteFrame(-7,-11,13,14,161,137)

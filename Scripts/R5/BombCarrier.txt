@@ -82,6 +82,8 @@ sub ObjectMain
 		Object[-1].YPos<<=9
 		Object[-1].YPos+=Object.YPos
 		Object[-1].YPos+=1835008
+		Object.Frame++
+		Object.Frame&=7
 		break
 	case 5
 		if Object.Value0<30
@@ -97,6 +99,8 @@ sub ObjectMain
 		Object[-1].YPos<<=9
 		Object[-1].YPos+=Object.YPos
 		Object[-1].YPos+=1835008
+		Object.Frame++
+		Object.Frame&=7
 		break
 	case 6
 		if Object.Value0<90
@@ -126,8 +130,6 @@ sub ObjectDraw
 		TempValue0>>=2
 		TempValue0+=2
 		DrawSprite(TempValue0)
-		Object.Frame++
-		Object.Frame&=7
 		break
 
 	endswitch

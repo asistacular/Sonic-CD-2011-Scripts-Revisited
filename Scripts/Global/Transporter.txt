@@ -50,8 +50,18 @@ sub ObjectMain
 				PlaySfx(21,0)
 			endif
 			break
-
 		endswitch
+		if Object.State<2
+			Object.YPos+=Object.Value3
+			Object.Value0++
+			if Object.Value0>3
+				Object.Value0=0
+				Object.Frame++
+				if Object.Frame>3
+					Object.Frame=0
+				endif
+			endif
+		endif
 	endif
 endsub
 
@@ -104,7 +114,6 @@ sub ObjectDraw
 	switch Object.PropertyValue
 	case 0
 		if Object.State<2
-			Object.YPos+=Object.Value3
 			DrawSprite(Object.Frame)
 			DrawSpriteFX(Object.Frame,FX_FLIP,Object.XPos,Object.YPos)
 			TempValue0=Object.Frame
@@ -114,14 +123,6 @@ sub ObjectDraw
 			DrawSprite(TempValue0)
 			TempValue0+=4
 			DrawSprite(TempValue0)
-			Object.Value0++
-			if Object.Value0>3
-				Object.Value0=0
-				Object.Frame++
-				if Object.Frame>3
-					Object.Frame=0
-				endif
-			endif
 		endif
 		break
 	case 1
@@ -140,6 +141,7 @@ endsub
 
 
 sub ObjectStartup
+	Object.Value0=-1
 	LoadSpriteSheet("Global/Items3.gif")
 	ArrayPos0=32
 	while ArrayPos0<1056

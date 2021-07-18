@@ -39,6 +39,8 @@ sub ObjectMain
 				Object.Type=TypeName[BlankObject]
 			endif
 		endif
+		Object.Frame++
+		Object.Frame&=3
 		break
 	case 1
 		Object.Value0++
@@ -54,6 +56,8 @@ sub ObjectMain
 		if Object.Value0==Object.Value1
 			Object.Type=TypeName[BlankObject]
 		endif
+		Object.Frame++
+		Object.Frame&=7
 		break
 
 	endswitch
@@ -66,8 +70,6 @@ sub ObjectDraw
 		if Warp.Timer>0
 			DrawSprite(Object.Frame)
 		endif
-		Object.Frame++
-		Object.Frame&=3
 		break
 	case 1
 		if Warp.Count!=2
@@ -80,15 +82,13 @@ sub ObjectDraw
 		TempValue0=Object.Frame
 		TempValue0>>=1
 		DrawSprite(TempValue0)
-		Object.Frame++
-		Object.Frame&=7
 		break
-
 	endswitch
 endsub
 
 
 sub ObjectStartup
+	Object.Frame--
 	LoadSpriteSheet("Global/Items3.gif")
 	SpriteFrame(-16,-16,32,32,50,133)
 	SpriteFrame(-16,-16,32,32,50,166)

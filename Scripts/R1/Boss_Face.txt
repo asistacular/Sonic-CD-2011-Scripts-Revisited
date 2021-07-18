@@ -373,7 +373,34 @@ sub ObjectMain
 			ArrayPos0++
 		endif
 		break
-
+	endswitch
+	switch Object.Animation
+	case 0
+		break
+	case 1
+		if Object.InkEffect<8
+			Object.InkEffect=8
+		else
+			if Object.InkEffect>23
+				Object.InkEffect=8
+			endif
+		endif
+		Object.Frame=Object.InkEffect
+		Object.Frame>>=3
+		Object.InkEffect++
+		break
+	case 2
+		if Object.InkEffect<12
+			Object.InkEffect=12
+		else
+			if Object.InkEffect>27
+				Object.InkEffect=12
+			endif
+		endif
+		Object.Frame=Object.InkEffect
+		Object.Frame>>=2
+		Object.InkEffect++
+		break
 	endswitch
 endsub
 
@@ -516,32 +543,9 @@ sub ObjectDraw
 		DrawSprite(0)
 		break
 	case 1
-		if Object.InkEffect<8
-			Object.InkEffect=8
-		else
-			if Object.InkEffect>23
-				Object.InkEffect=8
-			endif
-		endif
-		Object.Frame=Object.InkEffect
-		Object.Frame>>=3
-		Object.InkEffect++
-		DrawSprite(Object.Frame)
-		break
 	case 2
-		if Object.InkEffect<12
-			Object.InkEffect=12
-		else
-			if Object.InkEffect>27
-				Object.InkEffect=12
-			endif
-		endif
-		Object.Frame=Object.InkEffect
-		Object.Frame>>=2
-		Object.InkEffect++
 		DrawSprite(Object.Frame)
 		break
-
 	endswitch
 endsub
 

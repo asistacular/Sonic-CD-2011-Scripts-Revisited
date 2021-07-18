@@ -6,6 +6,27 @@
 #alias 15: TYPE_LAMPPOST
 
 
+sub ObjectMain
+	switch Object.State
+	case 0
+		break
+	case 1
+		Object.Value0+=16
+		if Object.Value0>896
+			Object.Value0=0
+			Object.State=2
+		endif
+		break
+	case 2
+		Object.Value0++
+		if Object.Value0==8
+			Object.Value0=0
+		endif
+		break
+	endswitch
+endsub
+
+
 sub ObjectPlayerInteraction
 	if Object.State==0
 		PlayerObjectCollision(C_TOUCH,-8,-32,8,32)
@@ -13,19 +34,15 @@ sub ObjectPlayerInteraction
 			LampPost.Check=Object.EntityNo
 			if Player.XPos<Object.XPos
 				LampPost.Side=-1572864
-#platform: Mobile			  
 				ObjectTileCollision(2,-24,0,0)
 				if CheckResult==1
 					LampPost.Side=0
-#endplatform
 			else
 				LampPost.Side=1572864
-#platform: Mobile
 				ObjectTileCollision(1,24,0,0)
 				if CheckResult==1
 					LampPost.Side=0
 				endif
-#endplatform
 			endif
 			Rec_Milliseconds=Stage.MilliSeconds
 			Rec_Seconds=Stage.Seconds
@@ -56,18 +73,9 @@ sub ObjectDraw
 		TempValue1+=Object.YPos
 		TempValue1-=1572864
 		DrawSpriteXY(2,TempValue0,TempValue1)
-		Object.Value0+=16
-		if Object.Value0>896
-			Object.Value0=0
-			Object.State=2
-		endif
 		break
 	case 2
 		DrawSprite(1)
-		Object.Value0++
-		if Object.Value0==8
-			Object.Value0=0
-		endif
 		TempValue0=Object.YPos
 		TempValue0-=2097152
 		if Object.Value0>3
@@ -76,7 +84,6 @@ sub ObjectDraw
 			DrawSpriteXY(3,Object.XPos,TempValue0)
 		endif
 		break
-
 	endswitch
 endsub
 

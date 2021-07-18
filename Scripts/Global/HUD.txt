@@ -7,7 +7,8 @@
 
 #alias Player.Value0:Player.Rings
 
-sub ObjectDraw
+
+sub ObjectMain
 	if Player.Rings==0
 		Object.Value4++
 		if Object.Value4==16
@@ -21,6 +22,10 @@ sub ObjectDraw
 			endif
 		endif
 	endif
+endsub
+
+
+sub ObjectDraw
 #platform: Standard
 	DrawSpriteScreenXY(10,17,13)
 	if Stage.Minutes==9

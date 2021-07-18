@@ -6,7 +6,7 @@
 #alias 16: TYPE_BGEFFECTS
 
 
-sub ObjectDraw
+sub ObjectMain
 	Object.Value3++
 	if Object.Value3>2
 		Object.Value3=0
@@ -86,6 +86,10 @@ sub ObjectDraw
 		Object.Value7&=3
 		SetActivePalette(Object.Value7,0,Screen.YSize)
 	endif
+endsub
+
+
+sub ObjectDraw
 	TempValue1=Object.Value2
 	TempValue2=TileLayer[0].Angle
 	if TempValue1<TempValue2

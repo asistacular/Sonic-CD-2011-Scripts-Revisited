@@ -24,6 +24,12 @@ sub ObjectMain
 		RotatingDrum_Timer++
 		RotatingDrum_Timer%=20
 	endif
+	Object.Value0++
+	if Object.Value0>3
+		TileLayer[0].DeformationOffsetW++
+		TileLayer[1].DeformationOffset++
+		Object.Value0=0
+	endif
 endsub
 
 
@@ -220,16 +226,6 @@ sub ObjectPlayerInteraction
 		break
 
 	endswitch
-endsub
-
-
-sub ObjectDraw
-	Object.Value0++
-	if Object.Value0>3
-		TileLayer[0].DeformationOffsetW++
-		TileLayer[1].DeformationOffset++
-		Object.Value0=0
-	endif
 endsub
 
 

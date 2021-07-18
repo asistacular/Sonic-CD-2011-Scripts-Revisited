@@ -6,7 +6,7 @@
 #alias 26: TYPE_INVINCIBILITY
 
 
-sub ObjectDraw
+sub ObjectMain
 	switch Object.State
 	case 0
 		Object.Value0++
@@ -17,6 +17,22 @@ sub ObjectDraw
 			Object[TempObjectPos].InkEffect=2
 			Object[TempObjectPos].Alpha=256
 			Object[TempObjectPos].DrawOrder=4
+		endif
+		break
+	case 1
+		Object.Alpha-=8
+		if Object.Alpha==128
+			Object.Type=TypeName[BlankObject]
+		endif
+		break
+	endswitch
+endsub
+
+
+sub ObjectDraw
+	switch Object.State
+	case 0
+		if Object.Value0>3
 			Object.Frame=Ring.Frame
 			Object.Frame&=3
 			if Warp.Timer==0
@@ -30,12 +46,7 @@ sub ObjectDraw
 		if Warp.Timer==0
 			DrawSpriteFX(Object.Frame,FX_INK,Object.XPos,Object.YPos)
 		endif
-		Object.Alpha-=8
-		if Object.Alpha==128
-			Object.Type=TypeName[BlankObject]
-		endif
 		break
-
 	endswitch
 endsub
 

@@ -113,6 +113,8 @@ sub ObjectMain
 	if Object[ArrayPos0].State>13
 		Object.Type=TypeName[BlankObject]
 	endif
+	Object.Frame++
+	Object.Frame&=3
 endsub
 
 
@@ -134,12 +136,11 @@ sub ObjectDraw
 	TempValue0=Object.Frame
 	TempValue0>>=1
 	DrawSprite(TempValue0)
-	Object.Frame++
-	Object.Frame&=3
 endsub
 
 
 sub ObjectStartup
+	Object.Frame=-1
 	LoadSpriteSheet("R4/Objects2.gif")
 	SpriteFrame(-4,-4,8,8,52,35)
 	SpriteFrame(-4,-4,8,8,52,44)

@@ -9,7 +9,7 @@
 #alias Player.Value6:Player.MinRollSpeed
 
 
-sub ObjectDraw
+sub ObjectMain
 	switch Object.State
 	case 0
 		if Object.Value1<320
@@ -40,9 +40,7 @@ sub ObjectDraw
 				Warp.PlayerFrame=Player.Frame
 				Player.Invincible=1000
 				Player.ControlMode=-1
-#platform: Mobile
 				Player.Visible=false
-#endplatform
 			endif
 			Music.Volume-=8
 			SetScreenFade(208,255,224,Object.Value1)
@@ -71,6 +69,7 @@ sub ObjectDraw
 				ResetObjectEntity(TempValue0,TypeName[BlankObject],0,0,0)
 				TempValue0++
 			loop
+			SetActivePalette(0,0,Screen.YSize)
 			Screen.XOffset=0
 			Screen.YOffset=0
 			Stage[0].ActiveLayer=9
@@ -119,9 +118,6 @@ sub ObjectDraw
 		endif
 		break
 	case 2
-		TempValue0=Object.Frame
-		TempValue0>>=1
-		DrawSpriteFX(TempValue0,FX_FLIP,Object.XPos,Object.YPos)
 		Object.Frame++
 		if Object.Frame==28
 			Object.Frame=0
@@ -178,7 +174,24 @@ sub ObjectDraw
 			LoadStage()
 		endif
 		break
+	endswitch
+endsub
 
+
+sub ObjectDraw
+	switch Object.State
+	case 0
+	case 1
+		break
+	case 2
+		TempValue0=Object.Frame
+		TempValue0>>=1
+		DrawSpriteFX(TempValue0,FX_FLIP,Object.XPos,Object.YPos)
+		break
+	case 3
+	case 4
+	case 5
+		break
 	endswitch
 endsub
 

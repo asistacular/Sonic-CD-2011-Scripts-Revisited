@@ -123,6 +123,7 @@ sub ObjectStartup
 		SetMusicTrack("US/ZoneComplete.ogg",1,0)
 	endif
 	Stage.PauseEnabled=0
+	Stage.SoftPauseEnabled=1
 	Stage.TimeEnabled=0
 	Object[23].Type=TypeName[SpecialSetup]
 	Object[23].Priority=1

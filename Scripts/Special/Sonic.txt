@@ -50,7 +50,11 @@ function Sonic_ProcessPlayer
 				if Object[9].Type==TypeName[BlankObject]
 					CheckTouchRect(240,0,Screen.XSize,40)
 					if CheckResult>-1
-						Stage.State=STAGE_PAUSED
+						if Stage.SoftPauseEnabled==1
+							Stage.State=STAGE_PAUSED
+						else
+							Stage.State=STAGE_PAUSED_HARD
+						endif
 						PauseMusic()
 						PlaySfx(27,0)
 						StopSfx(24)
@@ -64,7 +68,11 @@ function Sonic_ProcessPlayer
 						TileLayer[0].Type=3
 					endif
 					if Engine.Message==2
-						Stage.State=STAGE_PAUSED
+						if Stage.SoftPauseEnabled==1
+							Stage.State=STAGE_PAUSED
+						else
+							Stage.State=STAGE_PAUSED_HARD
+						endif
 						PauseMusic()
 						PlaySfx(27,0)
 						StopSfx(24)
@@ -84,7 +92,11 @@ function Sonic_ProcessPlayer
 				if Object[9].Type==TypeName[BlankObject]
 					if KeyPress.Start==1
 						KeyPress.Start=0
-						Stage.State=STAGE_PAUSED
+						if Stage.SoftPauseEnabled==1
+							Stage.State=STAGE_PAUSED
+						else
+							Stage.State=STAGE_PAUSED_HARD
+						endif
 						PauseMusic()
 						PlaySfx(27,0)
 						StopSfx(24)
@@ -98,7 +110,11 @@ function Sonic_ProcessPlayer
 						TileLayer[0].Type=3
 					endif
 					if Engine.Message==2
-						Stage.State=STAGE_PAUSED
+						if Stage.SoftPauseEnabled==1
+							Stage.State=STAGE_PAUSED
+						else
+							Stage.State=STAGE_PAUSED_HARD
+						endif
 						PauseMusic()
 						PlaySfx(27,0)
 						StopSfx(24)
@@ -121,7 +137,11 @@ function Sonic_ProcessPlayer
 				if KeyPress.Start==true
 					KeyPress.Start=false
 					if Options.DevMenuFlag==true
-						Stage.State=STAGE_PAUSED
+						if Stage.SoftPauseEnabled==1
+							Stage.State=STAGE_PAUSED
+						else
+							Stage.State=STAGE_PAUSED_HARD
+						endif
 						PauseMusic()
 						PlaySfx(27,0)
 						StopSfx(24)
@@ -149,7 +169,11 @@ function Sonic_HandlePause
 			if Object[9].Type==TypeName[BlankObject]
 				CheckTouchRect(240,0,Screen.XSize,40)
 				if CheckResult>-1
-					Stage.State=STAGE_PAUSED
+					if Stage.SoftPauseEnabled==1
+						Stage.State=STAGE_PAUSED
+					else
+						Stage.State=STAGE_PAUSED_HARD
+					endif
 					PauseMusic()
 					PlaySfx(27,0)
 					StopSfx(24)
@@ -163,7 +187,11 @@ function Sonic_HandlePause
 					TileLayer[0].Type=3
 				endif
 				if Engine.Message==2
-					Stage.State=STAGE_PAUSED
+					if Stage.SoftPauseEnabled==1
+						Stage.State=STAGE_PAUSED
+					else
+						Stage.State=STAGE_PAUSED_HARD
+					endif
 					PauseMusic()
 					PlaySfx(27,0)
 					StopSfx(24)
@@ -186,7 +214,11 @@ function Sonic_HandlePause
 				if KeyPress.Start==true
 					KeyPress.Start=false
 					if Options.DevMenuFlag==true
-						Stage.State=STAGE_PAUSED
+						if Stage.SoftPauseEnabled==1
+							Stage.State=STAGE_PAUSED
+						else
+							Stage.State=STAGE_PAUSED_HARD
+						endif
 						PauseMusic()
 						PlaySfx(27,0)
 						StopSfx(24)

@@ -6,9 +6,8 @@
 #alias 6: TYPE_UFOPOWERUP
 
 
-sub ObjectDraw
+sub ObjectMain
 	if Object.Value4<262144
-		DrawSpriteScreenXY(Object.PropertyValue,Object.iXPos,Object.iYPos)
 		Object.Value4+=8192
 		Object.YPos+=Object.Value4
 	endif
@@ -53,6 +52,13 @@ sub ObjectDraw
 			endif
 		endif
 		Object.Type=TypeName[BlankObject]
+	endif
+endsub
+
+
+sub ObjectDraw
+	if Object.Value4<262144
+		DrawSpriteScreenXY(Object.PropertyValue,Object.iXPos,Object.iYPos)
 	endif
 endsub
 

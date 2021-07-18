@@ -62,7 +62,6 @@ sub ObjectMain
 			if KeyPress.AnyStart==1
 				Object.Value1=Object.Value3
 			endif
-#platform: Mobile
 			CheckTouchRect(0,0,Screen.XSize,240)
 			if CheckResult>-1
 				Object.Value1=Object.Value3
@@ -70,19 +69,12 @@ sub ObjectMain
 			if Engine.Message==2
 				Object.Value1=Object.Value3
 			endif
-#endplatform
 		endif
 		break
 	endswitch
-endsub
-
-
-sub ObjectDraw
 	if Object[20].Type!=TypeName[TitleCard]
 		Object.AnimationTimer++
 		Object.AnimationTimer%=60
-		if Object.AnimationTimer>29
-		endif
 	endif
 endsub
 

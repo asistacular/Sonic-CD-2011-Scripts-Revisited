@@ -65,13 +65,17 @@ function BGEffects_Function50
 endfunction
 
 
-sub ObjectDraw
+sub ObjectMain
 	Object.Value0++
 	if Object.Value0>1
 		TileLayer[0].DeformationOffsetW++
 		TileLayer[1].DeformationOffsetW++
 		Object.Value0=0
 	endif
+endsub
+
+
+sub ObjectDraw
 	TempValue0=Stage.WaterLevel
 	TempValue0-=Screen.YOffset
 	if TempValue0<0
@@ -81,12 +85,7 @@ sub ObjectDraw
 		TempValue0=Screen.YSize
 	endif
 	SetActivePalette(Object[19].Value1,0,TempValue0)
-#platform: Standard
 	SetActivePalette(7,TempValue0,Screen.YSize)
-#endplatform
-#platform: Mobile
-	DrawRect(0,TempValue0,Screen.XSize,Screen.YSize,32,0,64,104)
-#endplatform
 endsub
 
 

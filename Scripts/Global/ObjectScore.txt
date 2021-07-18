@@ -6,9 +6,8 @@
 #alias 32: TYPE_OBJECTSCORE
 
 
-sub ObjectDraw
+sub ObjectMain
 	if Object.State==0
-		DrawSprite(Object.PropertyValue)
 		Object.YPos-=131072
 		Object.Value0++
 		if Object.Value0==24
@@ -33,7 +32,16 @@ sub ObjectDraw
 endsub
 
 
+sub ObjectDraw
+	if Object.State==0
+		DrawSprite(Object.PropertyValue)
+	endif
+endsub
+
+
 sub ObjectStartup
+	Object.YPos+=131072
+	Object.Value0=-1
 	LoadSpriteSheet("Global/Items3.gif")
 	SpriteFrame(-6,-4,12,8,0,246)
 	SpriteFrame(-7,-4,13,8,20,246)

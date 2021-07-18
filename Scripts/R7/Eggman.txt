@@ -382,6 +382,22 @@ sub ObjectMain
 			Object.Value3--
 		endif
 	endif
+	switch Object.Animation
+	case 0
+		Object.AnimationTimer++
+		Object.AnimationTimer%=12
+		break
+	case 1
+		TempValue0=Object.AnimationTimer
+		TempValue0&=1
+		if TempValue0==1
+			Object.Frame++
+			Object.Frame&=3
+		endif
+		Object.AnimationTimer++
+		Object.AnimationTimer%=12
+		break
+	endswitch
 endsub
 
 
@@ -471,16 +487,8 @@ sub ObjectDraw
 				DrawSpriteXY(TempValue0,TempValue1,TempValue2)
 			endif
 		endif
-		Object.AnimationTimer++
-		Object.AnimationTimer%=12
 		break
 	case 1
-		TempValue0=Object.AnimationTimer
-		TempValue0&=1
-		if TempValue0==1
-			Object.Frame++
-			Object.Frame&=3
-		endif
 		TempValue0=Object.Frame
 		TempValue0+=4
 		DrawSpriteFX(TempValue0,FX_FLIP,Object.XPos,Object.YPos)
@@ -525,15 +533,13 @@ sub ObjectDraw
 				DrawSpriteXY(TempValue0,TempValue1,TempValue2)
 			endif
 		endif
-		Object.AnimationTimer++
-		Object.AnimationTimer%=12
 		break
-
 	endswitch
 endsub
 
 
 sub ObjectStartup
+	Object.AnimationTimer=-1
 	LoadSpriteSheet("R7/Objects2.gif")
 	SpriteFrame(-40,-24,72,72,91,1)
 	SpriteFrame(-24,-9,24,16,164,1)

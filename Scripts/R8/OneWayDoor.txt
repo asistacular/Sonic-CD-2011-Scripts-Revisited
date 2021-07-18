@@ -16,6 +16,8 @@ sub ObjectMain
 			Object.Value1+=131072
 		endif
 	endif
+	Object.AnimationTimer++
+	Object.AnimationTimer%=6
 endsub
 
 
@@ -84,12 +86,11 @@ sub ObjectDraw
 		break
 
 	endswitch
-	Object.AnimationTimer++
-	Object.AnimationTimer%=6
 endsub
 
 
 sub ObjectStartup
+	Object.AnimationTimer=-1
 	LoadSpriteSheet("R8/Objects.gif")
 	SpriteFrame(-8,-48,16,32,58,131)
 	SpriteFrame(-8,-16,16,32,58,131)

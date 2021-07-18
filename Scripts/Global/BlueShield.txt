@@ -14,10 +14,6 @@ sub ObjectMain
 	if Player.State==PlayerObject_Drown
 		Object.Type=TypeName[BlankObject]
 	endif
-endsub
-
-
-sub ObjectDraw
 	Object.Value0++
 	if Object.Value0==2
 		Object.Value0=0
@@ -26,6 +22,10 @@ sub ObjectDraw
 			Object.Frame=0
 		endif
 	endif
+endsub
+
+
+sub ObjectDraw
 	if Warp.Timer==0
 		if Player.Visible==1
 			DrawSpriteFX(Object.Frame,FX_INK,Player.XPos,Player.YPos)
@@ -35,6 +35,7 @@ endsub
 
 
 sub ObjectStartup
+	Object.Value0=-1
 	if Stage.PlayerListPos==0
 		LoadSpriteSheet("Global/Items2.gif")
 	else

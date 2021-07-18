@@ -6,7 +6,7 @@
 #alias 11: TYPE_WATERSPLASH
 
 
-sub ObjectDraw
+sub ObjectMain
 	if Player.YPos>0
 		ResetObjectEntity(3,TypeName[BlankObject],0,0,0)
 	else
@@ -26,14 +26,18 @@ sub ObjectDraw
 			if Object.Frame==40
 				Object.Frame=28
 			endif
-			TempValue0=Object.Frame
-			TempValue0>>=2
-			DrawSpriteScreenXY(TempValue0,Screen.CenterX,224)
 		else
 			ResetObjectEntity(3,TypeName[BlankObject],0,0,0)
 			Object[4].Value7=0
 		endif
 	endif
+endsub
+
+
+sub ObjectDraw
+	TempValue0=Object.Frame
+	TempValue0>>=2
+	DrawSpriteScreenXY(TempValue0,Screen.CenterX,224)
 endsub
 
 

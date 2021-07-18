@@ -83,6 +83,23 @@ sub ObjectMain
 		break
 
 	endswitch
+	switch Object.Frame
+	case 0
+	case 1
+	case 2
+		Sin(Object.Value3,Object.Rotation)
+		Object.Value3*=-2097152
+		Object.Value3>>=9
+		Object.Value3+=Object.XPos
+		Cos(Object.Value4,Object.Rotation)
+		Object.Value4*=2097152
+		Object.Value4>>=9
+		Object.Value4+=Object.YPos
+		break
+	case 3
+	case 4
+		break
+	endswitch
 endsub
 
 
@@ -140,14 +157,6 @@ sub ObjectDraw
 	case 1
 	case 2
 		DrawSpriteFX(Object.Frame,FX_ROTATE,TempValue6,TempValue7)
-		Sin(Object.Value3,Object.Rotation)
-		Object.Value3*=-2097152
-		Object.Value3>>=9
-		Object.Value3+=Object.XPos
-		Cos(Object.Value4,Object.Rotation)
-		Object.Value4*=2097152
-		Object.Value4>>=9
-		Object.Value4+=Object.YPos
 		DrawSpriteXY(3,Object.Value3,Object.Value4)
 		break
 	case 3
@@ -156,7 +165,6 @@ sub ObjectDraw
 	case 4
 		DrawSpriteFX(2,FX_ROTATE,TempValue6,TempValue7)
 		break
-
 	endswitch
 endsub
 

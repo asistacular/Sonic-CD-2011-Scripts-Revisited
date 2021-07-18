@@ -51,7 +51,7 @@ sub ObjectMain
 				Object.Value4--
 				Object.Direction=3
 			endif
-			if TempValue0>4
+			if TempValue0>5
 				Object.Value4++
 				Object.Direction=FACING_RIGHT
 			endif
@@ -221,7 +221,7 @@ sub ObjectMain
 		endif
 		break
 #platform: Mobile
-		case 7
+	case 7
 		if Object.Value0<320
 			Object.Value0+=8
 		else
@@ -240,6 +240,15 @@ sub ObjectMain
 		SetScreenFade(0,0,0,Object.Value0)
 		break
 #endplatform
+	case 9
+		if Object.Value0<320
+			Object.Value0+=8
+		else
+			Stage.ListPos=6
+			LoadStage()
+		endif
+		SetScreenFade(0,0,0,Object.Value0)
+		break
 	endswitch
 endsub
 

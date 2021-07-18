@@ -274,25 +274,6 @@ sub ObjectMain
 				endif
 			endif
 			if Object.Value0==384
-#platform: Standard
-				if Stage.PlayerListPos==0
-					TempValue0=Stage.ListPos
-					TempValue0%=10
-					TempValue0>>=2
-					TempValue1=Stage.ListPos
-					TempValue1/=10
-					TempValue1*=3
-					TempValue0+=TempValue1
-					TempValue0++
-					TempValue1=Stage.Seconds
-					TempValue1*=100
-					TempValue2=Stage.Minutes
-					TempValue2*=6000
-					TempValue1+=TempValue2
-					TempValue1+=Stage.MilliSeconds
-					SetLeaderboard(TempValue0,TempValue1)
-				endif
-#endplatform
 				Fade_Colour=0
 				Object.Value0=0
 				LampPost.Check=0
@@ -347,7 +328,6 @@ sub ObjectMain
 					SaveRAM[ArrayPos1]+=Good_Future_List
 					WriteSaveRAM()
 				endif
-#platform: Mobile
 				if Options.GameMode==3
 					TimeAttack.Result=Stage.Seconds
 					TimeAttack.Result*=100
@@ -372,9 +352,7 @@ sub ObjectMain
 					Stage.ActiveList=PRESENTATION_STAGE
 					Stage.ListPos=11
 				endif
-#endplatform
 				if Options.GameMode==2
-#platform: Mobile	  
 					if Stage.PlayerListPos==0
 						TempValue0=Stage.ListPos
 						TempValue0%=10
@@ -391,8 +369,7 @@ sub ObjectMain
 						TempValue1+=TempValue2
 						TempValue1+=Stage.MilliSeconds
 						SetLeaderboard(TempValue0,TempValue1)
-					endif								   
-#endplatform	  
+					endif								   	  
 					TimeAttack.Result=Stage.Seconds
 					TimeAttack.Result*=100
 					TempValue0=Stage.Minutes
@@ -403,16 +380,11 @@ sub ObjectMain
 					Stage.ListPos=2
 					LoadStage()
 				else
-#platform: Standard
-					TempValue0=Engine.TrialMode
-#endplatform		 
-#platform: Mobile
 					if Options.GameMode<3
 						TempValue0=Engine.TrialMode
 					else
 						TempValue0=0
 					endif
-#endplatform		  
 					if Stage.ListPos>=Stage.ListSize
 						TempValue0=1
 					endif

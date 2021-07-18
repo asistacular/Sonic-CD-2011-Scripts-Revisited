@@ -13,24 +13,13 @@ sub ObjectDraw
 	Sin(TempValue0,Object.Value0)
 	TempValue0>>=7
 	TempValue0-=16
-	DrawSpriteScreenXY(2,280,TempValue0)
-	TempValue0=Screen.CenterX
-	TempValue0<<=1
-	DrawSpriteScreenXY(0,0,100)
-	DrawSpriteScreenXY(1,TempValue0,100)
-#platform: Standard
-	TempValue0-=300
-#endplatform
-#platform: Mobile
-	TempValue0-=320
-#endplatform
-	DrawRect(176,100,TempValue0,68,0,0,96,255)
+	DrawSpriteScreenXY(0,280,TempValue0)
 	Object.Value0++
 	Object.Value0&=511
-	TempValue0=3
+	TempValue0=1
 	TempValue1=16
 	ArrayPos0=40
-	while TempValue0<39
+	while TempValue0<37
 		Object[ArrayPos0].XPos+=TempValue1
 		if Object[ArrayPos0].XPos>33554432
 			Object[ArrayPos0].XPos-=33554432
@@ -51,13 +40,6 @@ endsub
 
 sub ObjectStartup
 	LoadSpriteSheet("Title/Title.gif")
-	SpriteFrame(0,0,176,68,256,4)
-#platform: Standard
-	SpriteFrame(-124,0,124,68,256,77)
-#endplatform
-#platform: Mobile
-	SpriteFrame(-144,0,144,68,257,251)
-#endplatform
 	SpriteFrame(0,0,120,104,257,146)
 	TempValue0=447
 	TempValue1=168

@@ -274,13 +274,6 @@ sub ObjectStartup
 	Object[0].Type=TypeName[MenuControl]
 	Object[0].DrawOrder=1
 	Object[0].Priority=1
-#platform: Standard
-	Object[34].Type=TypeName[BlankObject]
-	Object[35].Type=TypeName[BlankObject]
-	Object[36].Type=TypeName[BlankObject]
-	Object[37].Type=TypeName[BlankObject]
-#endplatform
-#platform: Mobile
 	Object[34].DrawOrder=5
 	Object[35].DrawOrder=5
 	Object[36].DrawOrder=5
@@ -296,7 +289,6 @@ sub ObjectStartup
 	Object[36].iXPos=TempValue1
 	TempValue1+=TempValue0
 	Object[37].iXPos=TempValue1
-#endplatform
 endsub
 
 sub RSDK

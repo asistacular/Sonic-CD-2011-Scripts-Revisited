@@ -65,6 +65,14 @@ sub ObjectMain
 		Rand(Object[TempObjectPos].Value1,32)
 		Object[TempObjectPos].Value1+=16
 	endif
+	Object.Value0++
+	if Object.Value0>2
+		Object.Value0=0
+		Object.Frame++
+		if Object.Frame>4
+			Object.Frame=0
+		endif
+	endif
 endsub
 
 
@@ -84,18 +92,11 @@ sub ObjectDraw
 		DrawSpriteFX(TempValue0,FX_INK,Object.XPos,Object[2].Value3)
 	endif
 	DrawSprite(Object.Frame)
-	Object.Value0++
-	if Object.Value0>2
-		Object.Value0=0
-		Object.Frame++
-		if Object.Frame>4
-			Object.Frame=0
-		endif
-	endif
 endsub
 
 
 sub ObjectStartup
+	Object.Value0=-1
 	if Stage.PlayerListPos==0
 		LoadSpriteSheet("Global/Items3.gif")
 		SpriteFrame(-14,-22,29,44,116,211)

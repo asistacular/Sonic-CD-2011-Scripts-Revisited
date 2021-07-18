@@ -86,8 +86,7 @@ sub ObjectMain
 				Object.State++
 				PlaySfx(27,0)
 				switch Object.Value1
-				case 0
-				case 3
+				case 2
 					Music.Volume=0
 					break
 
@@ -107,28 +106,52 @@ sub ObjectMain
 			Object.Value0=0
 			ArrayPos0=Object.Value1
 			Object[+ArrayPos0].Value2=0
-			Object.State=3
+			switch Object.Value1
+			case 0
+				Object.State=16
+				Object.YPos=40
+				Object.YPos*=Object.Value1
+				Object.YPos+=Screen.CenterY
+				Object.YPos-=87
+				break
+			case 1
+				EngineCallback(10)
+				ReadSaveRAM()
+				if SaveRAM[32]==0
+					SaveRAM[33]=100
+					SaveRAM[34]=100
+					SaveRAM[35]=0
+				endif
+				Object.State=4
+				Object.YPos=40
+				Object.YPos*=Object.Value1
+				Object.YPos+=Screen.CenterY
+				Object.YPos-=87
+				break
+			case 2
+				EngineCallback(15)
+				Object.State=3
+				break
+			case 3
+				EngineCallback(12)
+				Object.State=12
+				Object.YPos=40
+				Object.YPos*=Object.Value1
+				Object.YPos+=Screen.CenterY
+				Object.YPos-=87
+				break
+			endswitch
 		endif
 		break
 	case 3
 		if Object.Value0<320
 			Object.Value0+=8
 		else
-			Object.State=8
 			switch Object.Value1
-			case 0
-				EngineCallback(9)
-				break
-			case 1
-				EngineCallback(10)
-				break
 			case 2
-				EngineCallback(12)
+				Stage.ListPos=7
+				LoadStage()
 				break
-			case 3
-				EngineCallback(15)
-				break
-
 			endswitch
 		endif
 		TempValue0=Object.Value0
@@ -398,7 +421,75 @@ sub ObjectMain
 			Object[+10].Type=TypeName[BlankObject]
 		endif
 		break
-
+        case 16
+                TempValue0=Screen.CenterY
+		TempValue0-=87
+		if Object.YPos>TempValue0
+			Object.YPos-=8
+			if Object.YPos<TempValue0
+				Object.YPos=TempValue0
+			endif
+		else
+			TempValue0=Object.EntityNo
+			TempValue0+=10
+			ResetObjectEntity(TempValue0,TypeName[SoundtrackMenu],0,0,0)
+			Object[+10].InkEffect=2
+			Object.State++
+			Object.Alpha=0
+		endif
+                break
+        case 17
+		if Object.Value0<256
+			Object.Alpha=Object.Value0
+			Object.Value0+=8
+		else
+			Object.Value0=0
+			Object.Alpha=255
+			Object.State++
+		endif
+                break
+	case 18
+#platform: Mobile
+		CheckTouchRect(0,0,Screen.XSize,Screen.YSize)
+		TempValue3=CheckResult
+		TempValue0=Screen.XSize
+		TempValue0-=96
+		CheckTouchRect(TempValue0,192,Screen.XSize,Screen.YSize)
+		if CheckResult>-1
+			Object[+4].Value1=9
+		else
+			if TempValue3<0
+				if Object[+4].Value1==9
+					KeyPress.ButtonB=1
+				endif
+			else
+				if Object[+4].Value1==9
+					Object[+4].Value1=-1
+				endif
+			endif
+		endif
+#endplatform
+		if KeyPress.ButtonA==1
+			CheckResult=1
+		endif
+		if KeyPress.Start==1
+			CheckResult=1
+		endif
+		if KeyPress.ButtonB==1
+			Object.State=15
+			Object.Value0=248
+			PlayStageSfx(1,0)
+		endif
+                if CheckResult==1
+                	if Object.AnimationTimer<30
+				Object.AnimationTimer++
+			else
+				Object.AnimationTimer=0
+				Object.State=15
+				Object.Value0=248
+			endif
+		endif
+		break
 	endswitch
 endsub
 
@@ -427,6 +518,7 @@ sub ObjectDraw
 		break
 	case 4
 	case 12
+	case 16
 		ArrayPos0=Object.Value1
 		CallFunction(OptionsMenuC_Function6)
 		break
@@ -533,6 +625,8 @@ sub ObjectDraw
 	case 13
 	case 14
 	case 15
+	case 17
+	case 18
 		ArrayPos0=Object.Value1
 		Object.Alpha=255
 		CallFunction(OptionsMenuC_Function6)
@@ -582,14 +676,14 @@ sub ObjectStartup
 	SpriteFrame(0,0,20,20,189,387)
 	SpriteFrame(45,12,13,13,488,1)
 	SpriteFrame(0,0,250,37,259,421)
-	SpriteFrame(64,12,128,16,1,530)
-	SpriteFrame(64,12,128,16,1,290)
+	SpriteFrame(64,12,128,16,1,598)
 	SpriteFrame(64,12,128,16,1,205)
 	SpriteFrame(64,12,128,16,1,222)
-	SpriteFrame(64,12,128,16,130,530)
-	SpriteFrame(64,12,128,16,130,290)
+	SpriteFrame(64,12,128,16,1,239)
+	SpriteFrame(64,12,128,16,130,598)
 	SpriteFrame(64,12,128,16,130,205)
 	SpriteFrame(64,12,128,16,130,222)
+	SpriteFrame(64,12,128,16,130,239)
 	SpriteFrame(0,0,38,20,171,324)
 	SpriteFrame(0,0,4,20,171,345)
 	SpriteFrame(0,0,8,20,171,345)

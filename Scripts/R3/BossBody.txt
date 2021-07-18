@@ -98,9 +98,17 @@ sub ObjectMain
 			CreateTempObject(TypeName[Explosion],0,Object.XPos,Object.YPos)
 			Object[TempObjectPos].iYPos+=4
 		endif
+		if Object.Value5>0
+			Object.Value5++
+			Object.Value5&=15
+		endif
 		break
 	case 3
 		Object[-1].YPos=Object.YPos
+		if Object.Value5>0
+			Object.Value5++
+			Object.Value5&=15
+		endif
 		break
 	case 4
 		if Object.YPos>Object.Value2
@@ -127,9 +135,22 @@ sub ObjectMain
 			CreateTempObject(TypeName[Explosion],0,Object.XPos,Object.YPos)
 			Object[TempObjectPos].iYPos-=56
 		endif
+		if Object.Value5>0
+			Object.Value5++
+			Object.Value5&=15
+		endif
 		break
 	case 5
 		Object[-1].YPos=Object.YPos
+		if Object[-1].State==2
+			if Object.Value6<1048576
+				Object.Value6+=32768
+			endif
+		endif
+		if Object.Value5>0
+			Object.Value5++
+			Object.Value5&=15
+		endif
 		break
 	case 6
 		if Object.YPos>Object.Value2
@@ -173,6 +194,10 @@ sub ObjectMain
 			CreateTempObject(TypeName[Explosion],0,Object.XPos,Object.YPos)
 			Object[TempObjectPos].iXPos+=16
 			Object[TempObjectPos].iYPos-=56
+		endif
+		if Object.Value5>0
+			Object.Value5++
+			Object.Value5&=15
 		endif
 		break
 	case 7
@@ -285,10 +310,6 @@ sub ObjectDraw
 			DrawSprite(17)
 			DrawSprite(15)
 		endif
-		if Object.Value5>0
-			Object.Value5++
-			Object.Value5&=15
-		endif
 		TempValue0=Object.Frame
 		TempValue0/=3
 		DrawSprite(TempValue0)
@@ -308,15 +329,6 @@ sub ObjectDraw
 			DrawSprite(17)
 			DrawSpriteXY(19,Object.XPos,TempValue1)
 			DrawSprite(15)
-		endif
-		if Object[-1].State==2
-			if Object.Value6<1048576
-				Object.Value6+=32768
-			endif
-		endif
-		if Object.Value5>0
-			Object.Value5++
-			Object.Value5&=15
 		endif
 		TempValue0=Object.Frame
 		TempValue0/=3
@@ -346,10 +358,6 @@ sub ObjectDraw
 			if Object.Value6<1048576
 				Object.Value6+=32768
 			endif
-		endif
-		if Object.Value5>0
-			Object.Value5++
-			Object.Value5&=15
 		endif
 		TempValue0=Object.Frame
 		TempValue0/=3

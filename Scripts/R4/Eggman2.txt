@@ -501,6 +501,24 @@ sub ObjectMain
 		break
 
 	endswitch
+	switch Object.Value7
+	case 0
+	case 2
+	case 3
+		break
+	case 1
+		if Object.Frame<112
+			Object.Frame++
+		else
+			Object.Frame=0
+			Object.Value7=0
+		endif
+		break
+	case 4
+		Object.Frame++
+		Object.Frame&=15
+		break
+	endswitch
 endsub
 
 
@@ -574,12 +592,6 @@ sub ObjectDraw
 		TempValue0>>=3
 		TempValue0+=3
 		DrawSpriteFX(TempValue0,FX_FLIP,Object.XPos,Object.YPos)
-		if Object.Frame<112
-			Object.Frame++
-		else
-			Object.Frame=0
-			Object.Value7=0
-		endif
 		break
 	case 2
 		DrawSpriteFX(0,FX_FLIP,Object.XPos,Object.YPos)
@@ -596,10 +608,7 @@ sub ObjectDraw
 		TempValue0>>=2
 		TempValue0+=7
 		DrawSpriteFX(TempValue0,FX_FLIP,Object.XPos,Object.YPos)
-		Object.Frame++
-		Object.Frame&=15
 		break
-
 	endswitch
 endsub
 

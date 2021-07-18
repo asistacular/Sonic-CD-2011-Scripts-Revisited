@@ -6,6 +6,19 @@
 #alias 70: TYPE_GLOWEFFECT
 
 
+sub ObjectMain
+	switch Object.State
+	case 0
+		Object.State++
+		break
+	case 1
+		Object.Value0++
+		Object.Value0%=54
+		break
+	endswitch
+endsub
+
+
 sub ObjectDraw
 	if Stage[0].ActiveLayer==1
 		TempValue0=Object.Value0
@@ -34,10 +47,7 @@ sub ObjectDraw
 		case 6
 			SetActivePalette(3,0,Screen.YSize)
 			break
-
 		endswitch
-		Object.Value0++
-		Object.Value0%=54
 	endif
 endsub
 
@@ -47,6 +57,7 @@ sub ObjectStartup
 	Object[21].Type=TypeName[GlowEffect]
 	Object[21].Priority=1
 	Object[21].DrawOrder=0
+	Object.State=0
 	TempValue0=0
 	TempValue1=0
 	TempValue2=16

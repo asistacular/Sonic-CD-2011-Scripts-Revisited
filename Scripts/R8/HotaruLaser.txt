@@ -24,8 +24,9 @@ sub ObjectMain
 			Object.Type=TypeName[BlankObject]
 		endif
 		break
-
 	endswitch
+	Object.AnimationTimer++
+	Object.AnimationTimer&=3
 endsub
 
 
@@ -45,12 +46,11 @@ sub ObjectDraw
 	TempValue0=Object.AnimationTimer
 	TempValue0>>=1
 	DrawSpriteXY(TempValue0,Object.XPos,Object.Value1)
-	Object.AnimationTimer++
-	Object.AnimationTimer&=3
 endsub
 
 
 sub ObjectStartup
+	Object.AnimationTimer=-1
 	LoadSpriteSheet("R8/Objects3.gif")
 	SpriteFrame(-12,-8,24,16,146,158)
 	SpriteFrame(-12,-8,24,16,171,158)

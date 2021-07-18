@@ -6,7 +6,7 @@
 #alias 17: TYPE_HWBACKGROUND
 
 
-sub ObjectDraw
+sub ObjectMain
 	Object.Value0++
 	if Object.Value0>5
 		Object.Value0=0
@@ -31,6 +31,9 @@ sub ObjectDraw
 	endif
 	Object.Value5++
 	Object.Value5&=1023
+endsub
+
+sub ObjectDraw
 	TempValue4=Object.Value5
 	TempValue4>>=1
 	TempValue1=Object.Value3

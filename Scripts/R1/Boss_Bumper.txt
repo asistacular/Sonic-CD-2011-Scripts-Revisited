@@ -34,6 +34,9 @@ sub ObjectMain
 				Object.XPos+=1048576
 			endif
 		endif
+		if Object.Frame>0
+			Object.Frame--
+		endif
 		break
 	case 2
 		Object.Value2-=1280
@@ -43,6 +46,9 @@ sub ObjectMain
 		if Object.OutOfBounds==1
 			Object.Type=TypeName[BlankObject]
 			Object.Priority=0
+		endif
+		if Object.Frame>0
+			Object.Frame--
 		endif
 		break
 
@@ -75,9 +81,6 @@ endsub
 
 sub ObjectDraw
 	DrawSprite(Object.Frame)
-	if Object.Frame>0
-		Object.Frame--
-	endif
 endsub
 
 

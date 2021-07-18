@@ -96,7 +96,7 @@ sub ObjectDraw
 	Object.Value3&=511
 	TempValue0=Screen.XSize
 	TempValue0-=40
-	if Object[1].Value2>4
+	if Object[1].Value2>5
 		Sin(TempValue1,Object.Value3)
 		TempValue1>>=6
 		TempValue1+=96

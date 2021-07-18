@@ -6,7 +6,7 @@
 #alias 17: TYPE_HWBACKGROUND
 
 
-sub ObjectDraw
+sub ObjectMain
 	Object.Value0++
 	if Object.Value0>3
 		Object.Value0=0
@@ -25,12 +25,16 @@ sub ObjectDraw
 	endif
 	Object.Value5+=2
 	Object.Value5&=511
+endsub
+
+
+sub ObjectDraw
 	TempValue0=0
 	TempValue4=Object.Value5
 	TempValue1=Object.Value3
 	TempValue2=Object.Value4
 	ArrayPos0=0
-	while TempValue0<16
+	while TempValue0<32
 		Sin(TempValue3,TempValue4)
 		TempValue3/=12
 #platform: Standard

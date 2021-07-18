@@ -39,6 +39,8 @@ sub ObjectMain
 			Object[TempObjectPos].Value2=-114688
 			Object[TempObjectPos].Value3=12288
 		endif
+		Object.Value0++
+		Object.Value0%=20
 	else
 		if Object.OutOfBounds==1
 			Object.Type=TypeName[BlankObject]
@@ -52,8 +54,6 @@ sub ObjectDraw
 		TempValue0=Object.Value0
 		TempValue0/=10
 		DrawSprite(TempValue0)
-		Object.Value0++
-		Object.Value0%=20
 	else
 		DrawSprite(Object.PropertyValue)
 	endif
@@ -61,6 +61,7 @@ endsub
 
 
 sub ObjectStartup
+	Object.Value0=-1
 	LoadSpriteSheet("R6/Objects2.gif")
 	SpriteFrame(-8,-8,16,16,165,191)
 	SpriteFrame(-8,-8,16,16,181,191)

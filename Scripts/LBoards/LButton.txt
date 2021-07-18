@@ -7,7 +7,6 @@
 
 
 sub ObjectMain
-#platform: Mobile
 	if Engine.Message==2
 		Object.Value1=0
 	endif
@@ -92,22 +91,18 @@ sub ObjectMain
 			Object.Value1=0
 		endif
 	endif
-#endplatform
 endsub
 
 
 sub ObjectDraw
-#platform: Mobile
 	TempValue0=Object.PropertyValue
 	TempValue0<<=1
 	TempValue0+=Object.Value1
 	DrawSprite(TempValue0)
-#endplatform
 endsub
 
 
 sub ObjectStartup
-#platform: Mobile
 	LoadSpriteSheet("LBoards/Leaderboards.gif")
 	SpriteFrame(0,0,64,20,135,34)
 	SpriteFrame(0,0,64,20,135,55)
@@ -119,7 +114,6 @@ sub ObjectStartup
 	SpriteFrame(0,0,24,32,248,92)
 	SpriteFrame(0,0,24,32,273,92)
 	SpriteFrame(0,0,24,32,298,92)
-#endplatform
 endsub
 
 sub RSDK

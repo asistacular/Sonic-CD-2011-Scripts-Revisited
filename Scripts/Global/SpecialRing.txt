@@ -6,9 +6,15 @@
 #alias 20: TYPE_SPECIALRING
 #alias Player.Value0:Player.Rings
 
+
 sub ObjectMain
-	if Object.State==0
+	switch Object.State
+	case 0
 		if Player.Rings>49
+			Object.Frame++
+			if Object.Frame>31
+				Object.Frame=0
+			endif
 			PlayerObjectCollision(C_TOUCH,-16,-16,16,16)
 			if CheckResult==1
 				Object[0].Type=TypeName[BlankObject]
@@ -34,7 +40,20 @@ sub ObjectMain
 #endplatform
 			endif
 		endif
-	endif
+		break
+	case 1
+#platform: Standard
+		Object.Frame++
+		if Object.Frame>47
+#endplatform
+#platform: Mobile
+		Object.Frame++
+		if Object.Frame>63
+#endplatform
+			ResetObjectEntity(Object.EntityNo,TypeName[BlankObject],0,0,0)
+		endif
+		break
+	endswitch
 endsub
 
 
@@ -56,10 +75,6 @@ sub ObjectDraw
 			endif
 			DrawSpriteFX(TempValue0,FX_FLIP,Object.XPos,Object.YPos)
 #endplatform
-			Object.Frame++
-			if Object.Frame>31
-				Object.Frame=0
-			endif
 		endif
 		break
 	case 1
@@ -74,7 +89,6 @@ sub ObjectDraw
 #endplatform
 		DrawSpriteFX(TempValue0,FX_FLIP,Object.XPos,Object.YPos)
 #platform: Standard
-		Object.Frame++
 		if Object.Frame>31
 #endplatform
 #platform: Mobile
@@ -90,17 +104,7 @@ sub ObjectDraw
 			endif
 #endplatform
 		endif
-#platform: Standard
-		if Object.Frame>47
-#endplatform
-#platform: Mobile
-		Object.Frame++
-		if Object.Frame>63
-#endplatform
-			ResetObjectEntity(Object.EntityNo,TypeName[BlankObject],0,0,0)
-		endif
 		break
-
 	endswitch
 endsub
 
@@ -111,6 +115,7 @@ sub ObjectStartup
 	else
 		LoadSpriteSheet("Global/Items2_t.gif")
 	endif
+	Object.Frame=-1
 #platform: Standard
 	SpriteFrame(-32,-32,64,64,83,1)
 	SpriteFrame(-24,-32,48,64,148,1)						  

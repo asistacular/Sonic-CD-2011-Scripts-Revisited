@@ -168,8 +168,8 @@ sub ObjectDraw
 	TempValue2+=Screen.CenterX
 #platform: Standard
 	TempValue0+=64
+	TempValue2+=68
 #endplatform
-
 #platform: Mobile
 	TempValue2+=72
 #endplatform

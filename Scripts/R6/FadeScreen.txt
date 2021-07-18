@@ -8,6 +8,9 @@
 
 sub ObjectMain
 	if Object.State==0
+		if Object.Value0==0
+			Object.DrawOrder=6
+		endif
 		if Object.Value0<320
 			Object.Value0+=4
 		else
@@ -28,7 +31,15 @@ sub ObjectMain
 			CreateTempObject(TypeName[FadeMusic],1,Object.XPos,Object.YPos)
 		endif
 	endif
-	SetScreenFade(224,224,224,Object.Value0)
+endsub
+
+
+sub ObjectDraw
+	if Object.Value0>255
+		DrawRect(0,0,Screen.XSize,Screen.YSize,255,255,255,255)
+	else
+		DrawRect(0,0,Screen.XSize,Screen.YSize,255,255,255,Object.Value0)
+	endif
 endsub
 
 sub RSDK

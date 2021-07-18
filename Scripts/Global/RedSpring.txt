@@ -7,6 +7,17 @@
 #alias Player.Value7:Player.AnimationCheck
 
 
+sub ObjectMain
+	if Object.Value0!=0
+		if Object.Value0>12
+			Object.Value0=0
+		else
+			Object.Value0++
+		endif
+	endif
+endsub
+
+
 sub ObjectPlayerInteraction
 	switch Object.PropertyValue
 	case 0
@@ -266,7 +277,6 @@ sub ObjectDraw
 	if Object.Value0==0
 		DrawSpriteFX(Object.PropertyValue,FX_FLIP,Object.XPos,Object.YPos)
 	else
-		Object.Value0++
 		TempValue0=Object.Value0
 		TempValue0>>=1
 		switch TempValue0
@@ -287,11 +297,7 @@ sub ObjectDraw
 			TempValue1+=16
 			DrawSpriteFX(TempValue1,FX_FLIP,Object.XPos,Object.YPos)
 			break
-
 		endswitch
-		if Object.Value0>12
-			Object.Value0=0
-		endif
 	endif
 endsub
 

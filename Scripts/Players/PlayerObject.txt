@@ -170,13 +170,17 @@ function PlayerObject_ProcessPlayer
 				if KeyPress.Start==1
 					KeyPress.Start=0
 					if Options.DevMenuFlag==1
-						Stage.State=STAGE_PAUSED
+						if Stage.SoftPauseEnabled==1
+							Stage.State=STAGE_PAUSED
+						else
+							Stage.State=STAGE_PAUSED_HARD
+						endif
 						PauseMusic()
 						PlaySfx(27,0)
 						StopSfx(24)
 						StopSfx(25)
 						Object[9].Type=TypeName[PauseMenu]
-						Object[9].DrawOrder=6
+						Object[9].DrawOrder=7
 						Object[9].Priority=2
 					else
 						EngineCallback(13)
@@ -229,26 +233,34 @@ function PlayerObject_ProcessPlayer
 				if Object[9].Type==TypeName[BlankObject]
 					CheckTouchRect(240,0,Screen.XSize,40)
 					if CheckResult>-1
-						Stage.State=STAGE_PAUSED
+						if Stage.SoftPauseEnabled==1
+							Stage.State=STAGE_PAUSED
+						else
+							Stage.State=STAGE_PAUSED_HARD
+						endif
 						PauseMusic()
 						PlaySfx(27,0)
 						StopSfx(24)
 						StopSfx(25)
 						Object[9].Type=TypeName[PauseMenu]
-						Object[9].DrawOrder=6
+						Object[9].DrawOrder=7
 						Object[9].Priority=2
 						if Engine.FrameSkipTimer>-1
 							Engine.FrameSkipTimer=-1
 						endif
 					endif
 					if Engine.Message==2
-						Stage.State=STAGE_PAUSED
+						if Stage.SoftPauseEnabled==1
+							Stage.State=STAGE_PAUSED
+						else
+							Stage.State=STAGE_PAUSED_HARD
+						endif
 						PauseMusic()
 						PlaySfx(27,0)
 						StopSfx(24)
 						StopSfx(25)
 						Object[9].Type=TypeName[PauseMenu]
-						Object[9].DrawOrder=6
+						Object[9].DrawOrder=7
 						Object[9].Priority=2
 						if Engine.FrameSkipTimer>-1
 							Engine.FrameSkipTimer=-1
@@ -261,26 +273,34 @@ function PlayerObject_ProcessPlayer
 				if Object[9].Type==TypeName[BlankObject]
 					if KeyPress.Start==1
 						KeyPress.Start=0
-						Stage.State=STAGE_PAUSED
+						if Stage.SoftPauseEnabled==1
+							Stage.State=STAGE_PAUSED
+						else
+							Stage.State=STAGE_PAUSED_HARD
+						endif
 						PauseMusic()
 						PlaySfx(27,0)
 						StopSfx(24)
 						StopSfx(25)
 						Object[9].Type=TypeName[PauseMenu]
-						Object[9].DrawOrder=6
+						Object[9].DrawOrder=7
 						Object[9].Priority=2
 						if Engine.FrameSkipTimer>-1
 							Engine.FrameSkipTimer=-1
 						endif
 					endif
 					if Engine.Message==2
-						Stage.State=STAGE_PAUSED
+						if Stage.SoftPauseEnabled==1
+							Stage.State=STAGE_PAUSED
+						else
+							Stage.State=STAGE_PAUSED_HARD
+						endif
 						PauseMusic()
 						PlaySfx(27,0)
 						StopSfx(24)
 						StopSfx(25)
 						Object[9].Type=TypeName[PauseMenu]
-						Object[9].DrawOrder=6
+						Object[9].DrawOrder=7
 						Object[9].Priority=2
 						if Engine.FrameSkipTimer>-1
 							Engine.FrameSkipTimer=-1

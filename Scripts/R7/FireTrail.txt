@@ -6,17 +6,28 @@
 #alias 40: TYPE_FIRETRAIL
 
 
+sub ObjectMain
+	switch Object.State
+	case 0
+		Object.State++
+		break
+	case 1
+		Object.Value0++
+		if Object.Value0>3
+			Object.Value0=0
+			Object.Frame++
+			if Object.Frame>3
+				Object.Type=TypeName[BlankObject]
+				Object.Frame=0
+			endif
+		endif
+		break
+	endswitch
+endsub
+
+
 sub ObjectDraw
 	DrawSpriteFX(Object.Frame,FX_FLIP,Object.XPos,Object.YPos)
-	Object.Value0++
-	if Object.Value0>3
-		Object.Value0=0
-		Object.Frame++
-		if Object.Frame>3
-			Object.Type=TypeName[BlankObject]
-			Object.Frame=0
-		endif
-	endif
 endsub
 
 

@@ -6,8 +6,7 @@
 #alias 10: TYPE_SMOKEPUFF
 
 
-sub ObjectDraw
-	DrawSprite(Object.Frame)
+sub ObjectMain
 	Object.Value0++
 	if Object.Value0>3
 		Object.Value0=0
@@ -17,6 +16,11 @@ sub ObjectDraw
 			Object.Frame=0
 		endif
 	endif
+endsub
+
+
+sub ObjectDraw
+	DrawSprite(Object.Frame)
 endsub
 
 

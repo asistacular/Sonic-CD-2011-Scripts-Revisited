@@ -7,7 +7,6 @@
 
 
 sub ObjectMain
-#platform: Mobile
 	switch Object.State
 	case 1
 		Object.Value5=Object.XPos
@@ -138,12 +137,10 @@ sub ObjectMain
 		endif
 		break
 	endswitch
-#endplatform
 endsub
 
 
 sub ObjectDraw
-#platform: Mobile
 	DrawSprite(142)
 	Object.Value3=Object.PropertyValue
 	Object.Value3+=Object.Value4
@@ -232,12 +229,10 @@ sub ObjectDraw
 	if Object.State>6
 		DrawSpriteFX(143,FX_INK,Object.XPos,Object.YPos)
 	endif
-#endplatform
 endsub
 
 
 sub ObjectStartup
-#platform: Mobile
 	LoadSpriteSheet("LBoards/Leaderboards.gif")
 	LoadTextFile(MENU_1,"Data/Game/LeaderboardText.txt",0)
 	Leaderboard.ID=0
@@ -264,7 +259,6 @@ sub ObjectStartup
 	loop
 	SpriteFrame(0,-10,232,21,1,309)
 	SpriteFrame(0,-10,232,21,1,232)
-#endplatform
 endsub
 
 sub RSDK

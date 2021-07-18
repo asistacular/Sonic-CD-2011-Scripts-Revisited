@@ -188,6 +188,7 @@ sub ObjectStartup
 		SetMusicTrack("US/GameOver.ogg",5,0)
 	endif
 	Stage.PauseEnabled=0
+	Stage.SoftPauseEnabled=1
 	Screen.CameraStyle=Options.OriginalControls
 	Screen.CameraTarget=0
 	Stage.DeathBoundary=Stage.YBoundary2

@@ -92,12 +92,7 @@ sub ObjectStartup
 	else
 		SetMusicTrack("US/DAGarden.ogg",0,117382)
 	endif
-#platform: Standard
-	LoadTextFile(MENU_1,"Data/Game/Credits_Console.txt",0)
-#endplatform
-#platform: Mobile
-	LoadTextFile(MENU_1,"Data/Game/Credits_Mobile.txt",0)
-#endplatform
+	LoadTextFile(MENU_1,"Data/Game/Credits_Text.txt",0)
 	Screen.CameraEnabled=0
 	Object[0].Type=TypeName[CreditsControl]
 	Object[0].Priority=1

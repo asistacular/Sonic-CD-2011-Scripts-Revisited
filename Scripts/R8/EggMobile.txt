@@ -38,6 +38,7 @@
 #function EggMobile_Function81
 #function EggMobile_Function82
 #function EggMobile_Function83
+#function EggMobile_Function84
 
 function EggMobile_Function52
 	Object.Value0++
@@ -356,12 +357,19 @@ function EggMobile_Function63
 			Object[-1].YPos&=65535
 			Object[-1].YPos<<=16
 			Object[-1].YPos+=Object[+3].YPos
-			Object[-1].YPos+=6291456
 			Object[-1].XPos=Object[+3].XPos
-			Object[-1].XPos+=13107200
 			Object[-1].Rotation=96
-			Object[-1].Value1=-211898
-			Object[-1].Value2=87759
+			if Screen.XSize>400
+				Object[-1].YPos+=7077888
+				Object[-1].XPos+=14745600
+				Object[-1].Value1=-264873
+				Object[-1].Value2=98729
+			else
+				Object[-1].YPos+=6291456
+				Object[-1].XPos+=13107200
+				Object[-1].Value1=-211898
+				Object[-1].Value2=87759
+			endif
 		else
 			Object[-1].YPos=Player.XPos
 			Object[-1].YPos>>=16
@@ -373,12 +381,19 @@ function EggMobile_Function63
 			Object[-1].YPos&=65535
 			Object[-1].YPos<<=16
 			Object[-1].YPos+=Object[+3].YPos
-			Object[-1].YPos+=6291456
 			Object[-1].XPos=Object[+3].XPos
-			Object[-1].XPos-=13107200
 			Object[-1].Rotation=416
-			Object[-1].Value1=211898
-			Object[-1].Value2=87759
+			if Screen.XSize>400
+				Object[-1].YPos+=7077888
+				Object[-1].XPos-=14745600
+				Object[-1].Value1=264873
+				Object[-1].Value2=98729
+			else
+				Object[-1].YPos+=6291456
+				Object[-1].XPos-=13107200
+				Object[-1].Value1=211898
+				Object[-1].Value2=87759
+			endif
 		endif
 		Object[+2].Value2++
 	else
@@ -1452,6 +1467,10 @@ function EggMobile_Function83
 		TempValue0+=5
 		DrawSprite(TempValue0)
 	endif
+endfunction
+
+
+function EggMobile_Function84
 	Object[+1].AnimationTimer++
 	Object[+1].AnimationTimer%=40
 endfunction
@@ -1548,6 +1567,35 @@ sub ObjectMain
 			endif
 			break
 
+		endswitch
+	endif
+	TempValue0=Object.Value7
+	TempValue0&=1
+	if TempValue0==0
+		switch Object.Animation
+		case 0
+			CallFunction(EggMobile_Function84)
+			break
+		case 1
+			CallFunction(EggMobile_Function84)
+			if Object.AnimationTimer<120
+				Object.AnimationTimer++
+			else
+				Object.AnimationTimer=-1
+				Object.Animation=0
+			endif
+			break
+		case 2
+			CallFunction(EggMobile_Function84)
+			if Object.AnimationTimer<120
+				Object.AnimationTimer++
+			else
+				Object.AnimationTimer=-1
+				Object.Animation=0
+			endif
+			break
+		case 3
+			break
 		endswitch
 	endif
 endsub
@@ -1716,12 +1764,6 @@ sub ObjectDraw
 			endif
 			DrawSprite(9)
 			DrawSprite(10)
-			if Object.AnimationTimer<120
-				Object.AnimationTimer++
-			else
-				Object.AnimationTimer=0
-				Object.Animation=0
-			endif
 			break
 		case 2
 			DrawSprite(0)
@@ -1738,25 +1780,20 @@ sub ObjectDraw
 			TempValue0>>=3
 			TempValue0+=6
 			DrawSprite(TempValue0)
-			if Object.AnimationTimer<120
-				Object.AnimationTimer++
-			else
-				Object.AnimationTimer=0
-				Object.Animation=0
-			endif
 			DrawSprite(10)
 			break
 		case 3
 			DrawSprite(1)
 			DrawSprite(8)
 			break
-
 		endswitch
 	endif
 endsub
 
 
 sub ObjectStartup
+	Object.AnimationTimer=-1
+	Object[+1].AnimationTimer=-1
 	LoadSpriteSheet("R8/Objects3.gif")
 	SpriteFrame(-36,-60,88,112,1,1)
 	SpriteFrame(-36,-36,72,72,1,114)

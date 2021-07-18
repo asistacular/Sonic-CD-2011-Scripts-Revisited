@@ -11,7 +11,10 @@ sub ObjectMain
 	case 0
 		Object.XPos=Screen.XSize
 		Object.Value3=0
+		Object.Value4=-2
+		Object.Value5=-320
 		Object.Value0=0
+		Object.Value7=-1
 		Object.InkEffect=2
 		Object.Alpha=0
 		switch Engine.Language
@@ -56,9 +59,15 @@ sub ObjectMain
 		Object.Value3=Object.Value0
 		Object.Value3*=Screen.XSize
 		Object.Value3/=12
-		Object.Value4=Object.Value0
-		Object.Value4*=240
-		Object.Value4/=12
+		if Object.Value4<128
+			Object.Value4+=10
+			if Object.Value4>0
+				Object.Alpha=Object.Value4
+			endif
+		endif
+		if Object.Value5<0
+			Object.Value5+=16
+		endif
 		TempValue0=Object.Value0
 		TempValue0<<=7
 		TempValue0/=12
@@ -70,10 +79,14 @@ sub ObjectMain
 			Object.Value2=Object.XPos
 			Object.Value2+=48
 			Object.Value0=0
+			Object.Alpha=0
 			Object.State++
 		endif
 		break
 	case 2
+		if Object.Value5<0
+			Object.Value5+=16
+		endif
 		if Object.Value0<256
 			Object.Value0+=16
 			if Object.Value0<255
@@ -274,6 +287,7 @@ sub ObjectMain
 			else
 				Object.Value2=Object.XPos
 				Object.Value2+=48
+				Object.Value4=202
 				StopMusic()
 				Object.State=6
 			endif
@@ -291,6 +305,7 @@ sub ObjectMain
 					case 3
 						Object.Value2=Object.XPos
 						Object.Value2+=48
+						Object.Value4=202
 						StopMusic()
 						Object.State=6
 						break
@@ -310,6 +325,7 @@ sub ObjectMain
 					else
 						Object.Value2=Object.XPos
 						Object.Value2+=48
+						Object.Value4=202
 						StopMusic()
 						Object.State=6
 					endif
@@ -335,6 +351,9 @@ sub ObjectMain
 		break
 	case 6
 #platform: Standard
+		if Object.Value4<256
+			Object.Value4+=16
+		endif
 		if Object.XPos>-32
 #endplatform
 #platform: Mobile
@@ -372,6 +391,11 @@ sub ObjectMain
 		endif
 		break
 	endswitch
+	if Object.Value7>30
+		Object.Value7=0
+	else
+		Object.Value7++
+	endif
 endsub
 
 
@@ -379,28 +403,32 @@ sub ObjectDraw
 	switch Object.State
 	case 0
 	case 1
-	case 2
-		if Object.Value5<240
-			if Object.Value4>Object.Value5
-				TempValue0=Object.Value4
-				TempValue0-=Object.Value5
-				DrawRect(0,Object.Value5,384,TempValue0,255,255,255,128)
-				Object.Value5=Object.Value4
-			endif
-		endif
-		DrawSpriteScreenXY(3,Object.XPos,0)
-		DrawSpriteScreenXY(3,Object.XPos,32)
-		DrawSpriteScreenXY(3,Object.XPos,64)
-		DrawSpriteScreenXY(3,Object.XPos,96)
-		DrawSpriteScreenXY(3,Object.XPos,128)
-		DrawSpriteScreenXY(3,Object.XPos,160)
-		DrawSpriteScreenXY(3,Object.XPos,192)
-		DrawSpriteScreenXY(3,Object.XPos,224)
+		DrawRect(0,0,Screen.XSize,Screen.YSize,255,255,255,Object.Alpha)
+		TempValue0=Object.Value7
+		TempValue0-=32
+		while TempValue0<240
+			DrawSpriteScreenXY(3,Object.XPos,TempValue0)
+			TempValue0+=32
+		loop
 		TempValue0=Object.XPos
 		TempValue0+=128
 		DrawRect(TempValue0,0,128,Screen.YSize,0,0,0,255)
 		DrawRect(0,202,Object.Value3,13,0,0,0,255)
-		DrawSpriteScreenFX(4,FX_INK,0,202)
+		DrawSpriteScreenXY(4,Object.Value5,202)
+		break
+	case 2
+		DrawRect(0,0,Screen.XSize,Screen.YSize,255,255,255,128)
+		TempValue0=Object.Value7
+		TempValue0-=32
+		while TempValue0<240
+			DrawSpriteScreenXY(3,Object.XPos,TempValue0)
+			TempValue0+=32
+		loop
+		TempValue0=Object.XPos
+		TempValue0+=128
+		DrawRect(TempValue0,0,128,Screen.YSize,0,0,0,255)
+		DrawRect(0,202,Object.Value3,13,0,0,0,255)
+		DrawSpriteScreenXY(4,Object.Value5,202)
 		TempValue0=Object.XPos
 		TempValue0+=48
 		if Object.Value2>TempValue0
@@ -441,19 +469,18 @@ sub ObjectDraw
 		endif
 		break
 	case 3
-		DrawSpriteScreenXY(3,Object.XPos,0)
-		DrawSpriteScreenXY(3,Object.XPos,32)
-		DrawSpriteScreenXY(3,Object.XPos,64)
-		DrawSpriteScreenXY(3,Object.XPos,96)
-		DrawSpriteScreenXY(3,Object.XPos,128)
-		DrawSpriteScreenXY(3,Object.XPos,160)
-		DrawSpriteScreenXY(3,Object.XPos,192)
-		DrawSpriteScreenXY(3,Object.XPos,224)
+		DrawRect(0,0,Screen.XSize,Screen.YSize,255,255,255,128)
+		TempValue0=Object.Value7
+		TempValue0-=32
+		while TempValue0<240
+			DrawSpriteScreenXY(3,Object.XPos,TempValue0)
+			TempValue0+=32
+		loop
 		TempValue0=Object.XPos
 		TempValue0+=128
 		DrawRect(TempValue0,0,128,Screen.YSize,0,0,0,255)
 		DrawRect(0,202,Object.Value3,13,0,0,0,255)
-		DrawSpriteScreenFX(4,FX_INK,0,202)
+		DrawSpriteScreenXY(4,0,202)
 		TempValue0=Object.XPos
 		TempValue0+=48
 		if Object.Value2>TempValue0
@@ -494,14 +521,13 @@ sub ObjectDraw
 		endif
 		break
 	case 4
-		DrawSpriteScreenXY(3,Object.XPos,0)
-		DrawSpriteScreenXY(3,Object.XPos,32)
-		DrawSpriteScreenXY(3,Object.XPos,64)
-		DrawSpriteScreenXY(3,Object.XPos,96)
-		DrawSpriteScreenXY(3,Object.XPos,128)
-		DrawSpriteScreenXY(3,Object.XPos,160)
-		DrawSpriteScreenXY(3,Object.XPos,192)
-		DrawSpriteScreenXY(3,Object.XPos,224)
+		DrawRect(0,0,Screen.XSize,Screen.YSize,255,255,255,128)
+		TempValue0=Object.Value7
+		TempValue0-=32
+		while TempValue0<240
+			DrawSpriteScreenXY(3,Object.XPos,TempValue0)
+			TempValue0+=32
+		loop
 		TempValue0=Object.XPos
 		TempValue0+=128
 		DrawRect(TempValue0,0,128,Screen.YSize,0,0,0,255)
@@ -557,20 +583,18 @@ sub ObjectDraw
 		endif
 		break
 	case 5
-		if Object.Alpha<128
-			DrawRect(0,0,Screen.XSize,240,255,255,255,Object.Alpha)
+		if Object.Alpha<=128
+			DrawRect(0,0,Screen.XSize,Screen.YSize,255,255,255,Object.Alpha)
 		endif
-		DrawSpriteScreenXY(3,Object.XPos,0)
-		DrawSpriteScreenXY(3,Object.XPos,32)
-		DrawSpriteScreenXY(3,Object.XPos,64)
-		DrawSpriteScreenXY(3,Object.XPos,96)
-		DrawSpriteScreenXY(3,Object.XPos,128)
-		DrawSpriteScreenXY(3,Object.XPos,160)
-		DrawSpriteScreenXY(3,Object.XPos,192)
-		DrawSpriteScreenXY(3,Object.XPos,224)
+		TempValue0=Object.Value7
+		TempValue0-=32
+		while TempValue0<240
+			DrawSpriteScreenXY(3,Object.XPos,TempValue0)
+			TempValue0+=32
+		loop
 		TempValue0=Object.XPos
 		TempValue0+=128
-		DrawRect(TempValue0,0,128,Screen.YSize,0,0,0,255)
+		DrawRect(TempValue0,0,256,Screen.YSize,0,0,0,255)
 		DrawRect(0,Object.Value4,Screen.XSize,13,0,0,0,255)
 		DrawSpriteScreenXY(4,0,Object.Value4)
 		switch Object.Value1
@@ -596,20 +620,21 @@ sub ObjectDraw
 		endswitch
 		break
 	case 6
+		DrawRect(0,0,Screen.XSize,Screen.YSize,255,255,255,128)
 		TempValue0=Screen.XSize
 		TempValue0-=96
-		DrawRect(TempValue0,0,96,240,0,0,0,255)
-		DrawSpriteScreenXY(3,Object.XPos,0)
-		DrawSpriteScreenXY(3,Object.XPos,32)
-		DrawSpriteScreenXY(3,Object.XPos,64)
-		DrawSpriteScreenXY(3,Object.XPos,96)
-		DrawSpriteScreenXY(3,Object.XPos,128)
-		DrawSpriteScreenXY(3,Object.XPos,160)
-		DrawSpriteScreenXY(3,Object.XPos,192)
-		DrawSpriteScreenXY(3,Object.XPos,224)
+		DrawRect(TempValue0,0,96,Screen.YSize,0,0,0,255)
+		TempValue0=Object.Value7
+		TempValue0-=32
+		while TempValue0<240
+			DrawSpriteScreenXY(3,Object.XPos,TempValue0)
+			TempValue0+=32
+		loop
 		TempValue0=Object.XPos
 		TempValue0+=128
-		DrawRect(TempValue0,0,128,Screen.YSize,0,0,0,255)
+		DrawRect(TempValue0,0,256,Screen.YSize,0,0,0,255)
+		DrawRect(0,Object.Value4,Screen.XSize,13,0,0,0,255)
+		DrawSpriteScreenXY(4,0,Object.Value4)
 		switch Object.Value1
 		case 0
 			DrawSpriteScreenXY(6,Object.Value2,48)

@@ -28,8 +28,11 @@ sub ObjectMain
 			ResetObjectEntity(Object.EntityNo,TypeName[BlankObject],0,0,0)
 		endif
 		break
-
 	endswitch
+	Object.Frame++
+	Object.Frame%=24
+	Object.AnimationTimer++
+	Object.AnimationTimer%=12
 endsub
 
 
@@ -37,8 +40,6 @@ sub ObjectDraw
 	TempValue0=Object.Frame
 	TempValue0/=6
 	DrawSprite(TempValue0)
-	Object.Frame++
-	Object.Frame%=24
 	TempValue0=Object.AnimationTimer
 	TempValue0/=6
 	TempValue0+=4
@@ -47,12 +48,12 @@ sub ObjectDraw
 	if TempValue1<3
 		DrawSprite(TempValue0)
 	endif
-	Object.AnimationTimer++
-	Object.AnimationTimer%=12
 endsub
 
 
 sub ObjectStartup
+	Object.Frame=-1
+	Object.AnimationTimer=-1
 	LoadSpriteSheet("R6/Objects2.gif")
 	SpriteFrame(-32,-25,64,48,1,170)
 	SpriteFrame(-32,-23,48,56,66,131)

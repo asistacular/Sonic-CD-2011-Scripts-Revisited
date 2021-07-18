@@ -6,7 +6,18 @@
 #alias 56: TYPE_LOVEHEART
 
 
-sub ObjectDraw
+sub ObjectMain
+	switch Object.State
+	case 0
+		Object.State++
+		break
+	case 1
+		Object.YPos-=24576
+		Object.Value1+=8
+		Object.Value1&=511
+		Object.Value0++
+		break
+	endswitch
 	if Object.Value0>144
 		TempValue0=Object.Value0
 		TempValue0-=144
@@ -23,15 +34,18 @@ sub ObjectDraw
 	Sin(TempValue0,Object.Value1)
 	TempValue0<<=9
 	TempValue0+=Object.XPos
+endsub
+
+
+sub ObjectDraw
+	Sin(TempValue0,Object.Value1)
+	TempValue0<<=9
+	TempValue0+=Object.XPos
 	if Object.Value0>19
 		DrawSpriteFX(1,FX_INK,TempValue0,Object.YPos)
 	else
 		DrawSpriteXY(0,TempValue0,Object.YPos)
 	endif
-	Object.YPos-=24576
-	Object.Value1+=8
-	Object.Value1&=511
-	Object.Value0++
 endsub
 
 

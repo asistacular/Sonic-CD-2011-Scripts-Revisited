@@ -6,7 +6,7 @@
 #alias 16: TYPE_BGEFFECTS
 
 
-sub ObjectDraw
+sub ObjectMain
 	Object.Value3++
 	if Object.Value3>2
 		Object.Value3=0
@@ -91,6 +91,9 @@ sub ObjectDraw
 		RotatePalette(209,221,0)
 	endif
 #endplatform
+endsub
+
+sub ObjectDraw
 	TempValue1=Object.Value2
 	TempValue2=TileLayer[0].Angle
 	if TempValue1<TempValue2

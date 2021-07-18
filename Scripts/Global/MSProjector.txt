@@ -20,6 +20,10 @@ sub ObjectMain
 		if Object.Frame==56
 			Object.Frame=0
 		endif
+		Object.Value2+=Object.Value6
+		Object.Value2&=511
+		Object.Value3++
+		Object.Value3&=31
 		break
 	case 1
 		Object.Value0++
@@ -33,6 +37,10 @@ sub ObjectMain
 		if Object.Frame==56
 			Object.Frame=0
 		endif
+		Object.Value2+=Object.Value6
+		Object.Value2&=511
+		Object.Value3++
+		Object.Value3&=31
 		break
 	case 2
 		TempValue0=Object.Value0
@@ -97,10 +105,6 @@ sub ObjectDraw
 	Object.SpriteSheet=Object.Value4
 	DrawSprite(0)
 	if Object.State<2
-		Object.Value2+=Object.Value6
-		Object.Value2&=511
-		Object.Value3++
-		Object.Value3&=31
 		TempValue2=Object.Value3
 		TempValue2>>=4
 		TempValue2+=7

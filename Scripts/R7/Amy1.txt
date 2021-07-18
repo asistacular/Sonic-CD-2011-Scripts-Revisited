@@ -7,7 +7,12 @@
 
 
 sub ObjectMain
-	if Object.State==1
+	switch Object.State
+	case 0
+		Object.Frame++
+		Object.Frame&=31
+		break
+	case 1
 		Object.YPos+=Object.Value2
 		Object.Value2+=8192
 		ObjectTileCollision(0,0,19,0)
@@ -18,7 +23,8 @@ sub ObjectMain
 			Object.Value3=1050935296
 			Object.Value4=1073741824
 		endif
-	endif
+		break
+	endswitch
 endsub
 
 
@@ -48,8 +54,6 @@ sub ObjectDraw
 		TempValue0=Object.Frame
 		TempValue0>>=3
 		DrawSprite(TempValue0)
-		Object.Frame++
-		Object.Frame&=31
 	else
 		DrawSprite(Object.Frame)
 	endif
@@ -57,6 +61,7 @@ endsub
 
 
 sub ObjectStartup
+	Object.Frame=-1
 	LoadSpriteSheet("R7/Objects2.gif")
 	ArrayPos0=32
 	while ArrayPos0<1056

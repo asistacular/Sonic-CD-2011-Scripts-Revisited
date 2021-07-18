@@ -302,6 +302,21 @@ sub ObjectMain
 			Object.Value7--
 		endif
 	endif
+	if Object.Value6!=0
+		Object.Value6++
+		if Object.Value5<4
+			if Object.Value6==80
+				Object.Value6=0
+				Object.Value1=114688
+			endif
+		else
+			if Object.Value6==32
+				Object.Value6=16
+			endif
+		endif
+	endif
+	Object.Frame++
+	Object.Frame&=7
 endsub
 
 
@@ -421,17 +436,6 @@ sub ObjectDraw
 			TempValue0+=8
 			DrawSpriteFX(TempValue0,FX_FLIP,Object.XPos,Object.YPos)
 		endif
-		Object.Value6++
-		if Object.Value5<4
-			if Object.Value6==80
-				Object.Value6=0
-				Object.Value1=114688
-			endif
-		else
-			if Object.Value6==32
-				Object.Value6=16
-			endif
-		endif
 	endif
 	TempValue0=Object.Frame
 	TempValue0>>=2
@@ -452,12 +456,11 @@ sub ObjectDraw
 		break
 
 	endswitch
-	Object.Frame++
-	Object.Frame&=7
 endsub
 
 
 sub ObjectStartup
+	Object.Frame=-1
 	LoadSpriteSheet("R4/Objects2.gif")
 	ArrayPos0=32
 	while ArrayPos0<1056

@@ -7,7 +7,6 @@
 
 
 sub ObjectDraw
-#platform: Mobile
 	DrawRect(2,0,178,31,0,128,0,255)
 	switch Leaderboard.ID
 	case 0
@@ -98,12 +97,10 @@ sub ObjectDraw
 		DrawSprite(10)
 		break
 	endswitch
-#endplatform
 endsub
 
 
 sub ObjectStartup
-#platform: Mobile
 	LoadSpriteSheet("LBoards/Leaderboards.gif")
 	SpriteFrame(0,0,144,16,1,450)
 	SpriteFrame(0,0,144,16,1,331)
@@ -116,7 +113,6 @@ sub ObjectStartup
 	SpriteFrame(144,0,8,16,358,1)
 	SpriteFrame(144,0,8,16,367,1)
 	SpriteFrame(144,0,8,16,376,1)
-#endplatform
 endsub
 
 sub RSDK

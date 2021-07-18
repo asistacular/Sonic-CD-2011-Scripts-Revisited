@@ -17,23 +17,22 @@ sub ObjectMain
 			endif
 		endif
 	endif
+	Object.Frame++
+	if Object.Frame>17
+		Object.Frame=0
+	endif
 endsub
 
 
 sub ObjectPlayerInteraction
 	if Player.CollisionPlane==Object.Value2
-#platform: Mobile
 		TempValue0=0
 		if Player.Gravity==1
 			if Player.YVelocity<0
 				TempValue0=1
 			endif
 		endif
-		if TempValue0==0		
-#endplatform
-#platform: Standard	  
-		if Player.YVelocity>=0
-#endplatform				
+		if TempValue0==0						
 			if Player.Animation==ANI_JUMPING
 				PlayerObjectCollision(C_TOUCH,-16,-14,16,16)
 				if CheckResult==1
@@ -70,10 +69,6 @@ endsub
 
 
 sub ObjectDraw
-	Object.Frame++
-	if Object.Frame>17
-		Object.Frame=0
-	endif
 	switch Object.Frame
 	case 0
 	case 1
@@ -89,7 +84,8 @@ sub ObjectDraw
 		break
 	default
 		DrawSprite(Object.PropertyValue)
-		endswitch
+		break
+	endswitch
 endsub
 
 

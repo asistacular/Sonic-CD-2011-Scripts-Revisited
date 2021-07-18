@@ -23,10 +23,10 @@ sub ObjectMain
 #platform: Standard
 	Object.Value2=Object.Value5
 	Object.Value2--
-	Object.Value2*=60
+	Object.Value2*=45
 	Object.Value2+=Object[0].Value1
 	TempValue0=Screen.CenterX
-	TempValue0-=160
+	TempValue0-=154
 	Object.Value1=Object.Value2
 	Object.Value1*=54
 	Object.Value1/=60
@@ -138,154 +138,143 @@ sub ObjectMain
 						Object[43].State=4
 						Object[43].Value0=0
 					endif
-					endswitch
-					Object.State=3
-				endif
-			endif
-			break
-		case 3
-			if Object.Value0<30
-				Object.Value0++
-			else
-				Object.Value0=0
-				switch Object.PropertyValue
-				case 1
-					if Engine.TrialMode==0
-						Object[33].State=1
-						Object[33].PropertyValue=6
-						CallFunction(MenuButton_SetupMenuWindow)
-						ResetObjectEntity(62,TypeName[LoadSaveMenu],0,0,0)
-						Object[62].InkEffect=2
-						Object[62].Alpha=0
-						ResetObjectEntity(63,TypeName[BlankObject],0,0,0)
-						ResetObjectEntity(64,TypeName[BlankObject],0,0,0)
-						ResetObjectEntity(65,TypeName[BlankObject],0,0,0)
-						ResetObjectEntity(66,TypeName[BlankObject],0,0,0)
-						Object.Type=TypeName[BlankObject]
-						ReadSaveRAM()
-					else
-						Object.State=5
-						Object[0].State=5
-						Object[0].Value0=0
-						Options.GameMode=0
-						Player.Score=0
-						Player.Lives=3
-						Player.ScoreBonus=50000
-						Transporter_Destroyed=0
-						MetalSonic_Destroyed=0
-						Good_Future=0
-					endif
-					break
-				case 2
-					if Engine.TrialMode==0
-						Object.State=5
-						Object[0].State=4
-						Object[0].Value0=0
-					else
-						Object.State=2
-						Object[0].State=2
-						EngineCallback(14)
-					endif
-					break
-				case 3
-					LoadOnlineMenu(0)
-					Object.State=2
-					Object[0].State=2
-					break
-				case 4
-					LoadOnlineMenu(1)
-					Object.State=2
-					Object[0].State=2
-					break
-				case 5
-					Object[33].State=1
-					Object[33].PropertyValue=7
-					CallFunction(MenuButton_SetupMenuWindow)
-					ResetObjectEntity(62,TypeName[OptionsMenuC],0,0,0)
-					Object[62].InkEffect=2
-					Object[62].Alpha=0
-					ResetObjectEntity(63,TypeName[BlankObject],0,0,0)
-					ResetObjectEntity(64,TypeName[BlankObject],0,0,0)
-					ResetObjectEntity(65,TypeName[BlankObject],0,0,0)
-					ResetObjectEntity(66,TypeName[BlankObject],0,0,0)
-					Object.Type=TypeName[BlankObject]
-					break
-				case 6
-					Object[33].State=1
-					Object[33].PropertyValue=8
-					CallFunction(MenuButton_SetupMenuWindow)
-					ResetObjectEntity(62,TypeName[ExtrasMenu],0,0,0)
-					Object[62].InkEffect=2
-					Object[62].Alpha=0
-					ResetObjectEntity(63,TypeName[BlankObject],0,0,0)
-					ResetObjectEntity(64,TypeName[BlankObject],0,0,0)
-					ResetObjectEntity(65,TypeName[BlankObject],0,0,0)
-					ResetObjectEntity(66,TypeName[BlankObject],0,0,0)
-					Object.Type=TypeName[BlankObject]
-					break
-				case 7
-					EngineCallback(8)
-					Object.State=2
-					Object[0].State=2
-					break
-				case 8
-					EngineCallback(5)
-					Object.State=2
-					Object[0].State=2
-					break
-				case 9
-					EngineCallback(7)
-					Object.State=2
-					Object[0].State=2
-					break
-				case 10
-					Object[33].State=1
-					Object[33].PropertyValue=9
-					CallFunction(MenuButton_SetupMenuWindow)
-					Object[61].State=5
-					ResetObjectEntity(62,TypeName[SoundtrackMenu],0,0,0)
-					Object[62].InkEffect=2
-					Object[62].Alpha=0
-					ResetObjectEntity(63,TypeName[BlankObject],0,0,0)
-					ResetObjectEntity(64,TypeName[BlankObject],0,0,0)
-					ResetObjectEntity(65,TypeName[BlankObject],0,0,0)
-					ResetObjectEntity(66,TypeName[BlankObject],0,0,0)
-					Object.Type=TypeName[BlankObject]
-					break
-
 				endswitch
+				Object.State=3
 			endif
-			break
-		case 4
-			TempValue0=Object.Value3
-			TempValue0-=Object.XPos
-			TempValue0>>=4
-			Object.XPos+=TempValue0
-			TempValue0=Object.Value4
-			TempValue0-=Object.YPos
-			TempValue0>>=4
-			Object.YPos+=TempValue0
-			if Object.Value0<80
-				Object.Value0++
-			else
-				Object.Value0=0
-				Object.State=6
-			endif
-			break
-		case 7
-			if Object.PropertyValue==6
-				if Object[-1].State==2
+		endif
+		break
+	case 3
+		if Object.Value0<30
+			Object.Value0++
+		else
+			Object.Value0=0
+			switch Object.PropertyValue
+			case 1
+				if Engine.TrialMode==0
+					Object[33].State=1
+					Object[33].PropertyValue=6
+					CallFunction(MenuButton_SetupMenuWindow)
+					ResetObjectEntity(62,TypeName[LoadSaveMenu],0,0,0)
+					Object[62].InkEffect=2
+					Object[62].Alpha=0
+					ResetObjectEntity(63,TypeName[BlankObject],0,0,0)
+					ResetObjectEntity(64,TypeName[BlankObject],0,0,0)
+					ResetObjectEntity(65,TypeName[BlankObject],0,0,0)
+					ResetObjectEntity(66,TypeName[BlankObject],0,0,0)
+					Object.Type=TypeName[BlankObject]
+					ReadSaveRAM()
+				else
+					Object.State=5
+					Object[0].State=5
+					Object[0].Value0=0
+					Options.GameMode=0
+					Player.Score=0
+					Player.Lives=3
+					Player.ScoreBonus=50000
+					Transporter_Destroyed=0
+					MetalSonic_Destroyed=0
+					Good_Future=0
+				endif
+				break
+			case 2
+				if Engine.TrialMode==0
+					Object.State=5
+					Object[0].State=4
+					Object[0].Value0=0
+				else
 					Object.State=2
 					Object[0].State=2
+					EngineCallback(14)
 				endif
-			else
-				if Object[+1].State==2
-					Object.State=2
-					Object[0].State=2
-				endif
+				break
+			case 3
+				LoadOnlineMenu(0)
+				Object.State=2
+				Object[0].State=2
+				break
+			case 4
+				LoadOnlineMenu(1)
+				Object.State=2
+				Object[0].State=2
+				break
+			case 5
+				Object[33].State=1
+				Object[33].PropertyValue=7
+				CallFunction(MenuButton_SetupMenuWindow)
+				ResetObjectEntity(62,TypeName[OptionsMenuC],0,0,0)
+				Object[62].InkEffect=2
+				Object[62].Alpha=0
+				ResetObjectEntity(63,TypeName[BlankObject],0,0,0)
+				ResetObjectEntity(64,TypeName[BlankObject],0,0,0)
+				ResetObjectEntity(65,TypeName[BlankObject],0,0,0)
+				ResetObjectEntity(66,TypeName[BlankObject],0,0,0)
+				Object.Type=TypeName[BlankObject]
+				break
+			case 6
+				Object[33].State=1
+				Object[33].PropertyValue=8
+				CallFunction(MenuButton_SetupMenuWindow)
+				ResetObjectEntity(62,TypeName[ExtrasMenu],0,0,0)
+				Object[62].InkEffect=2
+				Object[62].Alpha=0
+				ResetObjectEntity(63,TypeName[BlankObject],0,0,0)
+				ResetObjectEntity(64,TypeName[BlankObject],0,0,0)
+				ResetObjectEntity(65,TypeName[BlankObject],0,0,0)
+				ResetObjectEntity(66,TypeName[BlankObject],0,0,0)
+				Object.Type=TypeName[BlankObject]
+				break
+			case 7
+				EngineCallback(8)
+				Object.State=2
+				Object[0].State=2
+				break
+			case 8
+				EngineCallback(5)
+				Object.State=2
+				Object[0].State=2
+				break
+			case 9
+				EngineCallback(7)
+				Object.State=2
+				Object[0].State=2
+				break
+			case 10
+				Object.State=5
+				Object[0].State=9
+				break
+			endswitch
+		endif
+		break
+	case 4
+		TempValue0=Object.Value3
+		TempValue0-=Object.XPos
+		TempValue0>>=4
+		Object.XPos+=TempValue0
+		TempValue0=Object.Value4
+		TempValue0-=Object.YPos
+		TempValue0>>=4
+		Object.YPos+=TempValue0
+		if Object.Value0<80
+			Object.Value0++
+		else
+			Object.Value0=0
+			Object.State=6
+		endif
+		break
+	case 7
+		if Object.PropertyValue==6
+			if Object[-1].State==2
+				Object.State=2
+				Object[0].State=2
 			endif
-			break
-		endswitch
+		else
+			if Object[+1].State==2
+				Object.State=2
+				Object[0].State=2
+			endif
+		endif
+		break
+	endswitch
 #endplatform
 
 
@@ -658,18 +647,8 @@ sub ObjectMain
 						Object[0].Value2=0
 						break
 					case 10
-						Object[33].State=1
-						Object[33].PropertyValue=9
-						CallFunction(MenuButton_SetupMenuWindow)
-						Object[61].State=5
-						ResetObjectEntity(62,TypeName[SoundtrackMenu],0,0,0)
-						Object[62].InkEffect=2
-						Object[62].Alpha=0
-						ResetObjectEntity(63,TypeName[BlankObject],0,0,0)
-						ResetObjectEntity(64,TypeName[BlankObject],0,0,0)
-						ResetObjectEntity(65,TypeName[BlankObject],0,0,0)
-						ResetObjectEntity(66,TypeName[BlankObject],0,0,0)
-						Object.Type=TypeName[BlankObject]
+						Object.State=5
+						Object[0].State=9
 						break
 					case 11
 						EngineCallback(16)
@@ -677,7 +656,6 @@ sub ObjectMain
 						Object[0].State=2
 						Object[0].Value2=0
 						break
-
 					endswitch
 				endif
 				break
@@ -799,36 +777,27 @@ sub ObjectStartup
 		if Engine.TrialMode==1
 			Object[34].PropertyValue=1
 			Object[35].PropertyValue=2
-			Object[36].PropertyValue=4
-			Object[37].PropertyValue=3
-			Object[38].PropertyValue=5
-			Object[39].PropertyValue=10
-			Object[40].PropertyValue=7
-			Object[41].PropertyValue=9
-			Object[1].Value2=8
+			Object[36].PropertyValue=5
+			Object[37].PropertyValue=7
+			Object[38].PropertyValue=9
+			Object[1].Value2=5
 		else
 			Object[34].PropertyValue=1
 			Object[35].PropertyValue=2
-			Object[36].PropertyValue=4
-			Object[37].PropertyValue=3
-			Object[38].PropertyValue=5
-			Object[39].PropertyValue=10
-			Object[40].PropertyValue=6
-			Object[41].PropertyValue=9
-			Object[1].Value2=8
+			Object[36].PropertyValue=5
+			Object[37].PropertyValue=6
+			Object[38].PropertyValue=9
+			Object[1].Value2=5
 #endplatform
 
 #platform: Mobile
-	if Options.DevMenuFlag==1
+		if Options.DevMenuFlag==1
 			Object[34].PropertyValue=1
 			Object[35].PropertyValue=2
 			Object[36].PropertyValue=5
-			Object[37].PropertyValue=10
-			Object[38].PropertyValue=6
-							  
-							 
-			Object[39].PropertyValue=9
-			Object[1].Value2=6
+			Object[37].PropertyValue=6			 
+			Object[38].PropertyValue=9
+			Object[1].Value2=5
 		else
 			if Engine.TrialMode==1
 				Object[34].PropertyValue=1
@@ -836,20 +805,18 @@ sub ObjectStartup
 				Object[36].PropertyValue=4
 				Object[37].PropertyValue=3
 				Object[38].PropertyValue=5
-				Object[39].PropertyValue=10
-				Object[40].PropertyValue=7
-				Object[41].PropertyValue=9
-				Object[1].Value2=8
+				Object[39].PropertyValue=7
+				Object[40].PropertyValue=9
+				Object[1].Value2=7
 			else
 				Object[34].PropertyValue=1
 				Object[35].PropertyValue=2
 				Object[36].PropertyValue=4
 				Object[37].PropertyValue=3
 				Object[38].PropertyValue=5
-				Object[39].PropertyValue=10
-				Object[40].PropertyValue=6
-				Object[41].PropertyValue=9
-				Object[1].Value2=8
+				Object[39].PropertyValue=6
+				Object[40].PropertyValue=9
+				Object[1].Value2=7
 			endif
 #endplatform
 		endif
@@ -1054,11 +1021,12 @@ sub ObjectStartup
 	loop
 	TempValue0=0
 	TempValue1=547
-	while TempValue0<4
+	while TempValue0<3
 		SpriteFrame(19,-7,128,16,1,TempValue1)
 		TempValue1+=17
 		TempValue0++
 	loop
+	SpriteFrame(19,-7,128,16,1,188)
 #platform: Mobile
 	SpriteFrame(19,-7,128,16,162,649)
 #endplatform
@@ -1116,11 +1084,12 @@ sub ObjectStartup
 	loop
 	TempValue0=0
 	TempValue1=547
-	while TempValue0<4
+	while TempValue0<3
 		SpriteFrame(19,-7,128,16,130,TempValue1)
 		TempValue1+=17
 		TempValue0++
 	loop
+	SpriteFrame(19,-7,128,16,130,188)
 #platform: Mobile
 	SpriteFrame(19,-7,128,16,162,666)
 #endplatform

@@ -9,6 +9,12 @@
 sub ObjectMain
 	switch Object.State
 	case 0
+		Object.Frame++
+		Object.Frame&=7
+		Object.State++
+		Object.Value0++
+		break
+	case 1
 		if Object.Value0<64
 			Object.Value0++
 			if Object.Value0>27
@@ -17,7 +23,7 @@ sub ObjectMain
 			endif
 		else
 			Object.Value0=0
-			Object.State=2
+			Object.State++
 			Object.Value4=Object.YPos
 		endif
 		break
@@ -35,7 +41,6 @@ sub ObjectMain
 			Object[-1].Rotation=0
 		endif
 		break
-
 	endswitch
 endsub
 
@@ -45,8 +50,6 @@ sub ObjectDraw
 	TempValue0>>=2
 	TempValue0+=Object.State
 	DrawSprite(TempValue0)
-	Object.Frame++
-	Object.Frame&=7
 endsub
 
 

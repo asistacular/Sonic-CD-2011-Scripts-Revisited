@@ -25,6 +25,8 @@ sub ObjectMain
 			Object.Type=TypeName[BlankObject]
 		endif
 	endif
+	Object.Frame++
+	Object.Frame%=20
 endsub
 
 
@@ -32,12 +34,11 @@ sub ObjectDraw
 	TempValue0=Object.Frame
 	TempValue0>>=2
 	DrawSprite(TempValue0)
-	Object.Frame++
-	Object.Frame%=20
 endsub
 
 
 sub ObjectStartup
+	Object.Frame=-1
 	LoadSpriteSheet("R5/Objects2.gif")
 	SpriteFrame(-2,-4,16,8,131,155)
 	SpriteFrame(-2,-4,16,8,131,164)

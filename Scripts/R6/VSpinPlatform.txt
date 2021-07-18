@@ -18,6 +18,17 @@ sub ObjectMain
 	Object.Value2+=Object.YPos
 	Object.Value2&=-65536
 	Object.Value2-=Object.Value1
+	switch Object.State
+	case 0
+		Object.State++
+		break
+	case 1
+		Object.Value5++
+		Object.Value5%=20
+		Object.Value6++
+		Object.Value6%=60
+		break
+	endswitch
 endsub
 
 
@@ -101,14 +112,10 @@ sub ObjectDraw
 	Object.Value1&=-65536
 	TempValue0=Object.Value5
 	TempValue0/=10
-	Object.Value5++
-	Object.Value5%=20
 	DrawSpriteXY(TempValue0,Object.XPos,Object.Value1)
 	TempValue0=Object.Value6
 	TempValue0/=10
 	TempValue0+=2
-	Object.Value6++
-	Object.Value6%=60
 	DrawSpriteXY(TempValue0,Object.XPos,Object.Value1)
 endsub
 
@@ -123,6 +130,7 @@ sub ObjectStartup
 	SpriteFrame(-8,16,16,16,35,117)
 	SpriteFrame(-8,16,16,16,35,117)
 	SpriteFrame(-8,16,16,16,52,117)
+	Object.State=0
 	ArrayPos0=32
 	while ArrayPos0<1056
 		if Object[ArrayPos0].Type==TypeName[VSpinPlatform]

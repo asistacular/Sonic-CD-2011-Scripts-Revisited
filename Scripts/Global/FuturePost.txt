@@ -6,6 +6,30 @@
 #alias 16: TYPE_FUTUREPOST
 
 
+sub ObjectMain
+	switch Object.State
+	case 0
+		break
+	case 1
+		Object.Value0++
+		if Object.Value0==64
+			Object.Value0=0
+			Object.State=2
+			Object.Priority=0
+		endif
+		TempValue0=Object.Value0
+		TempValue0&=1
+		Object.Frame+=TempValue0
+		if Object.Frame>8
+			Object.Frame=1
+		endif
+		break
+	case 2
+		break
+	endswitch
+endsub
+
+
 sub ObjectPlayerInteraction
 	if Object.State==0
 		if Player.CollisionPlane==Object.Value1
@@ -15,6 +39,7 @@ sub ObjectPlayerInteraction
 				Object.State=1
 				Object.Priority=1
 				Object.Frame=1
+				Object.Value0=-1
 				PlaySfx(12,0)
 #platform: Use_Haptics
 				HapticEffect(20,0,0,0)	
@@ -33,25 +58,12 @@ sub ObjectDraw
 		break
 	case 1
 		DrawSprite(0)
-		Object.Value0++
-		if Object.Value0==64
-			Object.Value0=0
-			Object.State=2
-			Object.Priority=0
-		endif
 		DrawSprite(Object.Frame)
-		TempValue0=Object.Value0
-		TempValue0&=1
-		Object.Frame+=TempValue0
-		if Object.Frame>8
-			Object.Frame=1
-		endif
 		break
 	case 2
 		DrawSprite(0)
 		DrawSprite(5)
 		break
-
 	endswitch
 endsub
 

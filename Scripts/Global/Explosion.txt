@@ -6,8 +6,7 @@
 #alias 23: TYPE_EXPLOSION
 
 
-sub ObjectDraw
-	DrawSprite(Object.Frame)
+sub ObjectMain
 	Object.Value0++
 	if Object.Value0>3
 		Object.Value0=0
@@ -20,7 +19,13 @@ sub ObjectDraw
 endsub
 
 
+sub ObjectDraw
+	DrawSprite(Object.Frame)
+endsub
+
+
 sub ObjectStartup
+	Object.Value0=-1
 	if Stage.PlayerListPos==0
 		LoadSpriteSheet("Global/Items2.gif")
 	else

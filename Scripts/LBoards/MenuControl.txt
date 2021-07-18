@@ -7,7 +7,6 @@
 
 
 sub ObjectMain
-#platform: Mobile
 	switch Object.State
 	case 0
 		Object.State=1
@@ -65,12 +64,10 @@ sub ObjectMain
 		EngineCallback(3)
 		break
 	endswitch
-#endplatform
 endsub
 
 
 sub ObjectStartup
-#platform: Mobile
 	if Options.Soundtrack==0
 		SetMusicTrack("JP/TimeAttack.ogg",0,0x188A0)
 	else
@@ -79,7 +76,6 @@ sub ObjectStartup
 	Object[0].Type=TypeName[MenuControl]
 	Object[0].DrawOrder=1
 	Options.PhysicalControls=0
-#endplatform
 endsub
 
 sub RSDK

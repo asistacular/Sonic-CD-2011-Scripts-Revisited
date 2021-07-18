@@ -32,6 +32,10 @@ sub ObjectMain
 	case 3
 		Object.Value0++
 		Object.Value0&=7
+		Object.XPos+=262144
+		if Object.OutOfBounds==1
+			ResetObjectEntity(Object.EntityNo,TypeName[BlankObject],0,0,0)
+		endif
 		break
 
 	endswitch
@@ -76,10 +80,6 @@ sub ObjectDraw
 		TempValue0>>=2
 		TempValue0+=11
 		DrawSprite(TempValue0)
-		Object.XPos+=262144
-		if Object.OutOfBounds==1
-			ResetObjectEntity(Object.EntityNo,TypeName[BlankObject],0,0,0)
-		endif
 		break
 
 	endswitch

@@ -11,6 +11,14 @@ sub ObjectMain
 	if Object.OutOfBounds==1
 		Object.Type=TypeName[BlankObject]
 	endif
+	if Object.AnimationTimer>9
+		Object.Direction-=2
+	endif
+	Object.AnimationTimer++
+	Object.AnimationTimer%=20
+	if Object.AnimationTimer>9
+		Object.Direction+=2
+	endif
 endsub
 
 
@@ -54,18 +62,15 @@ endsub
 
 sub ObjectDraw
 	if Object.AnimationTimer>9
-		Object.Direction+=2
 		DrawSpriteFX(0,FX_FLIP,Object.XPos,Object.YPos)
-		Object.Direction-=2
 	else
 		DrawSpriteFX(0,FX_FLIP,Object.XPos,Object.YPos)
 	endif
-	Object.AnimationTimer++
-	Object.AnimationTimer%=20
 endsub
 
 
 sub ObjectStartup
+	Object.AnimationTimer=-1
 	LoadSpriteSheet("R4/Objects2.gif")
 	SpriteFrame(-16,-8,32,16,152,159)
 endsub
