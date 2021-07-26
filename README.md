@@ -34,20 +34,26 @@ That said, you are free to utilize any script modifications (bugfixes, enhanceme
 + Enhance pause functionality (in conjunction with engine additions from the related engine project)
   * Enabled fully-animated pause menu in special stages
   * Moved the pause menu into a higher DrawLayer to prevent conflict with the HUD
-  * To Do: Update all in-game objects to move any non-drawing related code from ObjectDraw to ObjectMain (ugh...)
-    - Progress: Special Stages, global objects, misc objects, animated tiles, parallax effects, deformation effects, boss objects - Complete; R1,R3,R4,R5,R6,R7,R8 stage objects - Pending
+  * Fixed incorrect active palette displaying during pause and rapid palette switching after resuming from a paused state (in conjunction with engine additions from the related engine project)
+  * To Do: Update all in-game objects to move any non-drawing related code from ObjectDraw to ObjectMain/ObjectPlayerInteraction (ugh...)
+    - Progress: Special stages, global objects, misc objects, animated tiles, parallax effects, deformation effects, boss objects, R1 stage objects - Complete; R3,R4,R5,R6,R7,R8 stage objects - Pending
 ### Planned
 + Enhancements:
   * Select a single set of assets/stage layouts to use between PC/mobile versions
   * Merge PC/mobile only script sections to create a unified codebase
   * Use `#Screen_Std` and `#Screen_Wide` preprocessor directives to partially replace the `#Standard` and `#Mobile` directives (in conjunction with engine additions from the related engine project)
 + Bugfixes:
+  * Tweak collision on vertical springs so that the player can't stand on the very upper-left corner of them instead of bouncing
   * Correctly retain tiny form when warping through time in MMZ2
+  * Fix vertical stage wrap/incorrect water level when warping through time in upper portion of TTZ2
+  * Fix various LampPosts moving when triggered in TTZ (possibly others?)
   * Use mobile layout or remove a column of tiles for CCZ1 and CCZ2 to extend stage area in PC version after sign post when in widescreen
-  * Fix incorrect active palette displaying during pause and rapid palette switching after resuming from a paused state (in conjunction with engine additions from the related engine project)
 ### Possible
 + Restore original palette cycle and background planet shape in SS2
++ Fix/extend SS5 background parallax effects when playing in widescreen
 + Slow down movement speed of various speedy (possibly bugged) UFO paths in SS2 and SS3
++ Add underwater BG palette cycle for TTZ GF/BF and BG palette cycling in general for TTZ1 GF/BF
++ Add SS3/4-style palette cycling for bumpers/barriers to all other special stages
 + Retain shields, speed shoes and invincibility when warping through time
 + Instant time warping option
 + Option to switch between SegaCD/MegaCD and Genesis/MD sound effects
