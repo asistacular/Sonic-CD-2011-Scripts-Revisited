@@ -6,10 +6,7 @@
 #alias 66: TYPE_WATERFALLSPLASH
 
 
-sub ObjectDraw
-	TempValue0=Object.Frame
-	TempValue0>>=2
-	DrawSprite(TempValue0)
+sub ObjectMain
 	Object.Frame++
 	if Object.Frame>11
 		Object.Type=TypeName[BlankObject]
@@ -17,7 +14,15 @@ sub ObjectDraw
 endsub
 
 
+sub ObjectDraw
+	TempValue0=Object.Frame
+	TempValue0>>=2
+	DrawSprite(TempValue0)
+endsub
+
+
 sub ObjectStartup
+	Object.Frame=-1
 	LoadSpriteSheet("R1/Objects3.gif")
 	SpriteFrame(-16,-16,32,32,1,221)
 	SpriteFrame(-12,-12,24,24,34,221)

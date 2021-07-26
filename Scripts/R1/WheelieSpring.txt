@@ -26,6 +26,13 @@ sub ObjectMain
 			FlipSign(Object.Value0)
 		endif
 	endif
+	if Object.Frame!=0
+		if Object.Frame>12
+			Object.Frame=0
+		else
+			Object.Frame++
+		endif
+	endif
 	ObjectTileGrip(0,0,15,0)
 endsub
 
@@ -70,7 +77,6 @@ sub ObjectDraw
 	if Object.Frame==0
 		DrawSprite(0)
 	else
-		Object.Frame++
 		TempValue0=Object.Frame
 		TempValue0>>=1
 		switch TempValue0
@@ -89,9 +95,6 @@ sub ObjectDraw
 			break
 
 		endswitch
-		if Object.Frame>12
-			Object.Frame=0
-		endif
 	endif
 	TempValue0=Object.Value0
 	TempValue0+=Object.PropertyValue

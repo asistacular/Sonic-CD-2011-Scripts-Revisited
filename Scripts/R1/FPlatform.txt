@@ -67,7 +67,6 @@ sub ObjectMain
 				Object.Priority=0
 			endif
 			break
-
 		endswitch
 	endif
 endsub
@@ -81,11 +80,11 @@ sub ObjectPlayerInteraction
 			Player.YPos+=Object.Value2
 		endif
 	endif
+	Object.YPos+=Object.Value2
 endsub
 
 
 sub ObjectDraw
-	Object.YPos+=Object.Value2
 	if Object.State<3
 		DrawSprite(0)
 	endif

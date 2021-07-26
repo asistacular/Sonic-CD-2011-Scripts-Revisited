@@ -6,6 +6,13 @@
 #alias 48: TYPE_FLIPDOOR
 
 
+sub ObjectMain
+	if Object.Value0>0
+		Object.Value0--
+	endif
+endsub
+
+
 sub ObjectPlayerInteraction
 	if Object.PropertyValue==0
 		PlayerObjectCollision(C_PLATFORM,-24,-4,24,32)
@@ -40,14 +47,12 @@ sub ObjectDraw
 	if Object.PropertyValue==0
 		if Object.Value0>0
 			DrawSprite(1)
-			Object.Value0--
 		else
 			DrawSprite(0)
 		endif
 	else
 		if Object.Value0>0
 			DrawSprite(3)
-			Object.Value0--
 		else
 			DrawSprite(2)
 		endif

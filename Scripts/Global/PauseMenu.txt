@@ -422,7 +422,7 @@ endsub
 
 
 sub ObjectDraw
-	SetActivePalette(0,0,Screen.YSize)
+	SetTempPalette(0)
 	switch Object.State
 	case 0
 	case 1
@@ -708,11 +708,10 @@ sub ObjectDraw
 				endif									   
 			endif
 			break
-
 		endswitch
 		break
-
 	endswitch
+	ClearTempPalette()
 endsub
 
 

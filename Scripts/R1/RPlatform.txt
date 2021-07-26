@@ -90,11 +90,11 @@ sub ObjectPlayerInteraction
 		Object.Value0=1
 		Player.YPos+=Object.Value2
 	endif
+	Object.YPos+=Object.Value2
 endsub
 
 
 sub ObjectDraw
-	Object.YPos+=Object.Value2
 	DrawSprite(0)
 endsub
 

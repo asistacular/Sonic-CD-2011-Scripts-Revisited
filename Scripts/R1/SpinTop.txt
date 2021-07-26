@@ -7,6 +7,17 @@
 #alias Player.Value6:Player.MinRollSpeed
 
 
+sub ObjectMain
+	TempValue0=Ring.AniCount
+	TempValue0&=1
+	if TempValue0==0
+		Object.Frame++
+		if Object.Frame>2
+			Object.Frame=0
+		endif
+	endif
+endsub
+
 sub ObjectPlayerInteraction
 	PlayerObjectCollision(C_BOX,-16,-8,16,24)
 	TempValue1=Object.Value0
@@ -79,14 +90,6 @@ endsub
 
 sub ObjectDraw
 	DrawSprite(Object.Frame)
-	TempValue0=Ring.AniCount
-	TempValue0&=1
-	if TempValue0==0
-		Object.Frame++
-		if Object.Frame>2
-			Object.Frame=0
-		endif
-	endif
 endsub
 
 

@@ -6,6 +6,21 @@
 #alias 57: TYPE_BOUNCEPOLE
 
 
+sub ObjectMain
+	Object.Direction=Object.PropertyValue
+	if Object.Frame>0
+		Object.Value0++
+		if Object.Value0==3
+			Object.Value0=0
+			Object.Frame++
+			if Object.Frame>20
+				Object.Frame=0
+			endif
+		endif
+	endif
+endsub
+
+
 sub ObjectPlayerInteraction
 	PlayerObjectCollision(C_TOUCH,-16,-8,16,8)
 	if CheckResult==1
@@ -27,18 +42,7 @@ endsub
 
 
 sub ObjectDraw
-	Object.Direction=Object.PropertyValue
 	DrawSpriteFX(Object.Frame,FX_FLIP,Object.XPos,Object.YPos)
-	if Object.Frame>0
-		Object.Value0++
-		if Object.Value0==3
-			Object.Value0=0
-			Object.Frame++
-			if Object.Frame>20
-				Object.Frame=0
-			endif
-		endif
-	endif
 endsub
 
 

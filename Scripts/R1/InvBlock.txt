@@ -6,6 +6,21 @@
 #alias 49: TYPE_INVISIBLEBLOCK
 
 
+sub ObjectMain
+	if Object[24].PropertyValue==0
+		if Object.Value0==1
+			if Object.Frame<24
+				Object.Frame++
+			endif
+		else
+			if Object.Frame>0
+				Object.Frame--
+			endif
+		endif
+	endif
+endsub
+
+
 sub ObjectPlayerInteraction
 	if Object.State<2
 		PlayerObjectCollision(C_PLATFORM,-12,-12,12,12)
@@ -21,44 +36,29 @@ sub ObjectPlayerInteraction
 			endif
 			break
 		case 1
+			Object.YPos+=131072
 			if Object.Value0==1
 				Player.YPos+=131072
 			endif
+			if Object.OutOfBounds==1
+				Object.State=2
+				Object.YPos=Object.Value2
+			endif
 			break
-
+		case 2
+			if Object.OutOfBounds==1
+				Object.State=0
+				Object.Priority=0
+			endif
+			break
 		endswitch
 	endif
 endsub
 
 
 sub ObjectDraw
-	switch Object.State
-	case 1
-		Object.YPos+=131072
-		if Object.OutOfBounds==1
-			Object.State=2
-			Object.YPos=Object.Value2
-		endif
-		break
-	case 2
-		if Object.OutOfBounds==1
-			Object.State=0
-			Object.Priority=0
-		endif
-		break
-
-	endswitch
 	switch Object[24].PropertyValue
 	case 0
-		if Object.Value0==1
-			if Object.Frame<24
-				Object.Frame++
-			endif
-		else
-			if Object.Frame>0
-				Object.Frame--
-			endif
-		endif
 		DrawSprite(Object.Frame)
 		break
 	case 1
@@ -70,7 +70,6 @@ sub ObjectDraw
 			DrawSprite(5)
 		endif
 		break
-
 	endswitch
 endsub
 

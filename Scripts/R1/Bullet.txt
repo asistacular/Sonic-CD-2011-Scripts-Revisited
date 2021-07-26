@@ -20,6 +20,12 @@ sub ObjectMain
 			Object.Type=TypeName[BlankObject]
 		endif
 	endif
+	Object.Value0++
+	if Object.Value0>2
+		Object.Value0=0
+		Object.Frame++
+		Object.Frame&=3
+	endif
 endsub
 
 
@@ -33,16 +39,11 @@ endsub
 
 sub ObjectDraw
 	DrawSprite(Object.Frame)
-	Object.Value0++
-	if Object.Value0>2
-		Object.Value0=0
-		Object.Frame++
-		Object.Frame&=3
-	endif
 endsub
 
 
 sub ObjectStartup
+	Object.Value0=-1
 	LoadSpriteSheet("R1/Objects.gif")
 	SpriteFrame(-4,-4,8,8,166,34)
 	SpriteFrame(-4,-4,8,8,175,34)
